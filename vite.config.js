@@ -3,10 +3,4 @@ import react from '@vitejs/plugin-react'
 
 export default defineConfig({
   plugins: [react()],
-  base: '/dual-leads-site/',
-  build: {
-    outDir: 'dist',
-    minify: 'terser',
-    sourcemap: false
-  }
 })

@@ -1,5 +1,5 @@
 const whatsappHref =
-  "https://wa.me/?text=Ola%2C%20vim%20pelo%20site%20da%20Dual%20Leads%20e%20quero%20entender%20como%20voces%20podem%20operar%20marketing%2C%20midia%20paga%20e%20comercial%20para%20o%20meu%20negocio.";
+  "https://wa.me/556181963957?text=Ola%2C%20vim%20pelo%20site%20da%20Dual%20Leads%20e%20quero%20entender%20como%20voces%20podem%20operar%20marketing%2C%20midia%20paga%20e%20comercial%20para%20o%20meu%20negocio.";
 
 const navigation = [
   ["Servicos", "#servicos"],
@@ -67,7 +67,7 @@ export default function App() {
   return (
     <div className="site-shell">
       <a className="floating-whatsapp" href={whatsappHref} target="_blank" rel="noreferrer">
-        Chamar no WhatsApp
+        Falar no WhatsApp
       </a>
 
       <header className="topbar">
@@ -89,7 +89,7 @@ export default function App() {
           </nav>
 
           <a className="topbar-cta" href={whatsappHref} target="_blank" rel="noreferrer">
-            Falar agora
+            Falar no WhatsApp
           </a>
         </div>
       </header>
@@ -114,7 +114,7 @@ export default function App() {
 
               <div className="hero-actions">
                 <a className="button primary" href={whatsappHref} target="_blank" rel="noreferrer">
-                  Chamar no WhatsApp
+                  Falar no WhatsApp
                 </a>
                 <a className="button secondary" href="#servicos">
                   Ver servicos
@@ -199,7 +199,7 @@ export default function App() {
                 atendimento, da tecnologia ao follow-up.
               </p>
               <a className="button primary" href={whatsappHref} target="_blank" rel="noreferrer">
-                Quero conversar
+                Falar com a Dual Leads
               </a>
             </div>
 
@@ -277,7 +277,7 @@ export default function App() {
 
             <div className="cta-actions">
               <a className="button primary block" href={whatsappHref} target="_blank" rel="noreferrer">
-                Abrir WhatsApp
+                Falar no WhatsApp
               </a>
               <a className="button tertiary block" href="mailto:agenciadlead@gmail.com">
                 Enviar email

@@ -1,59 +1,60 @@
-import React, { useState, useEffect } from "react";
+﻿import React, { useState, useEffect } from "react";
+import dleadsLogo from "./assets/dleads-logo.jpeg";
 
 // ============================================
 // DADOS
 // ============================================
 const whatsappHref =
-  "https://wa.me/556181963957?text=Olá!%20Vim%20pelo%20site%20da%20Dual%20Leads%20e%20quero%20estruturar%20meu%20marketing%20e%20vendas.";
+  "https://wa.me/556181963957?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20D%27Leads%20e%20quero%20estruturar%20meu%20marketing%20e%20vendas.";
 
 const metrics = [
   { value: "+150", label: "Clientes atendidos" },
   { value: "+R$12M", label: "Em vendas geradas" },
   { value: "+5", label: "Anos de mercado" },
-  { value: "4.9", label: "Avaliação média" },
+  { value: "4.9", label: "AvaliaÃ§Ã£o mÃ©dia" },
 ];
 
 const services = [
   {
-    icon: "📊",
-    title: "Mídia Paga",
-    description: "Google Ads e Meta Ads com gestão ativa, otimização contínua e foco em ROI.",
-    items: ["Google Ads", "Meta Ads", "Remarketing", "Otimização de conversão"],
+    icon: "ðŸ“Š",
+    title: "MÃ­dia Paga",
+    description: "Google Ads e Meta Ads com gestÃ£o ativa, otimizaÃ§Ã£o contÃ­nua e foco em ROI.",
+    items: ["Google Ads", "Meta Ads", "Remarketing", "OtimizaÃ§Ã£o de conversÃ£o"],
   },
   {
-    icon: "🎯",
+    icon: "ðŸŽ¯",
     title: "Marketing Digital",
     description: "Landing pages, criativos, copy e ofertas que convertem visitantes em leads.",
     items: ["Landing Pages", "Criativos", "Copywriting", "Funis de venda"],
   },
   {
-    icon: "💼",
+    icon: "ðŸ’¼",
     title: "Processo Comercial",
     description: "Scripts, CRM e rotinas que transformam leads em clientes pagantes.",
-    items: ["Qualificação", "Follow-up", "Scripts de venda", "Recuperação"],
+    items: ["QualificaÃ§Ã£o", "Follow-up", "Scripts de venda", "RecuperaÃ§Ã£o"],
   },
   {
-    icon: "⚙️",
+    icon: "âš™ï¸",
     title: "Tecnologia & Dados",
-    description: "Automações, dashboards e tracking para decisões baseadas em dados reais.",
-    items: ["CRM", "Automações", "Dashboards", "Tracking avançado"],
+    description: "AutomaÃ§Ãµes, dashboards e tracking para decisÃµes baseadas em dados reais.",
+    items: ["CRM", "AutomaÃ§Ãµes", "Dashboards", "Tracking avanÃ§ado"],
   },
 ];
 
 const steps = [
   {
     number: "01",
-    title: "Diagnóstico",
-    description: "Analisamos seu negócio, metas, gargalos e oportunidades de crescimento.",
+    title: "DiagnÃ³stico",
+    description: "Analisamos seu negÃ³cio, metas, gargalos e oportunidades de crescimento.",
   },
   {
     number: "02",
-    title: "Estruturação",
-    description: "Montamos sua máquina de vendas: tráfego, páginas, CRM e processos.",
+    title: "EstruturaÃ§Ã£o",
+    description: "Montamos sua mÃ¡quina de vendas: trÃ¡fego, pÃ¡ginas, CRM e processos.",
   },
   {
     number: "03",
-    title: "Operação",
+    title: "OperaÃ§Ã£o",
     description: "Executamos, otimizamos e escalamos com acompanhamento semanal.",
   },
 ];
@@ -62,18 +63,18 @@ const testimonials = [
   {
     name: "Carlos Mendes",
     role: "CEO, TechSolutions",
-    text: "Em 3 meses triplicamos nossos leads qualificados. A Dual Leads entende de verdade o que é performance.",
+    text: "Em 3 meses triplicamos nossos leads qualificados. A D'Leads entende de verdade o que Ã© performance.",
     avatar: "CM",
   },
   {
     name: "Ana Paula",
-    role: "Diretora, Clínica Estética",
+    role: "Diretora, ClÃ­nica EstÃ©tica",
     text: "Finalmente encontramos uma assessoria que entrega resultado de verdade. Recomendo demais!",
     avatar: "AP",
   },
   {
     name: "Roberto Silva",
-    role: "Founder, Imobiliária RS",
+    role: "Founder, ImobiliÃ¡ria RS",
     text: "O processo comercial que implementaram mudou nosso jogo. Vendemos 40% mais no primeiro trimestre.",
     avatar: "RS",
   },
@@ -82,19 +83,19 @@ const testimonials = [
 const faqs = [
   {
     question: "Quanto tempo para ver resultados?",
-    answer: "Nossos clientes começam a ver resultados nas primeiras 2-4 semanas. Resultados consistentes e escaláveis geralmente aparecem a partir do segundo mês.",
+    answer: "Nossos clientes comeÃ§am a ver resultados nas primeiras 2-4 semanas. Resultados consistentes e escalÃ¡veis geralmente aparecem a partir do segundo mÃªs.",
   },
   {
-    question: "Qual o investimento mínimo em mídia?",
-    answer: "Recomendamos um investimento mínimo de R$3.000/mês em mídia paga para ter dados suficientes para otimização. O valor ideal depende do seu mercado e metas.",
+    question: "Qual o investimento mÃ­nimo em mÃ­dia?",
+    answer: "Recomendamos um investimento mÃ­nimo de R$3.000/mÃªs em mÃ­dia paga para ter dados suficientes para otimizaÃ§Ã£o. O valor ideal depende do seu mercado e metas.",
   },
   {
-    question: "Vocês atendem qual tipo de empresa?",
-    answer: "Atendemos empresas de serviço, negócios locais, clínicas, imobiliárias, educação e qualquer negócio que venda para outras empresas ou consumidores finais.",
+    question: "VocÃªs atendem qual tipo de empresa?",
+    answer: "Atendemos empresas de serviÃ§o, negÃ³cios locais, clÃ­nicas, imobiliÃ¡rias, educaÃ§Ã£o e qualquer negÃ³cio que venda para outras empresas ou consumidores finais.",
   },
   {
     question: "Como funciona o acompanhamento?",
-    answer: "Você terá reuniões semanais de alinhamento, acesso a dashboards em tempo real e um canal direto de comunicação via WhatsApp para dúvidas rápidas.",
+    answer: "VocÃª terÃ¡ reuniÃµes semanais de alinhamento, acesso a dashboards em tempo real e um canal direto de comunicaÃ§Ã£o via WhatsApp para dÃºvidas rÃ¡pidas.",
   },
 ];
 
@@ -115,13 +116,13 @@ function Header() {
     <header className={`header ${isScrolled ? "header--scrolled" : ""}`}>
       <div className="container header__inner">
         <a href="#inicio" className="logo">
-          <span className="logo__mark">DL</span>
-          <span className="logo__text">Dual Leads</span>
+          <img className="logo__image" src={dleadsLogo} alt="Logo D'Leads" />
+          <span className="logo__text">D&apos;Leads</span>
         </a>
 
         <nav className={`nav ${isMobileMenuOpen ? "nav--open" : ""}`}>
-          <a href="#servicos" onClick={() => setIsMobileMenuOpen(false)}>Serviços</a>
-          <a href="#metodo" onClick={() => setIsMobileMenuOpen(false)}>Método</a>
+          <a href="#servicos" onClick={() => setIsMobileMenuOpen(false)}>ServiÃ§os</a>
+          <a href="#metodo" onClick={() => setIsMobileMenuOpen(false)}>MÃ©todo</a>
           <a href="#depoimentos" onClick={() => setIsMobileMenuOpen(false)}>Depoimentos</a>
           <a href="#faq" onClick={() => setIsMobileMenuOpen(false)}>FAQ</a>
         </nav>
@@ -155,15 +156,15 @@ function Hero() {
       <div className="container hero__content">
         <div className="hero__badge">
           <span className="pulse"></span>
-          🚀 Vagas limitadas para Abril
+          ðŸš€ Vagas limitadas para Abril
         </div>
 
         <h1 className="hero__title">
-          Estruturamos seu <span className="gradient-text">marketing e vendas</span> para você vender mais todos os meses
+          Estruturamos seu <span className="gradient-text">marketing e vendas</span> para vocÃª vender mais todos os meses
         </h1>
 
         <p className="hero__subtitle">
-          Mídia paga, landing pages, CRM e processo comercial integrados em uma única operação. 
+          MÃ­dia paga, landing pages, CRM e processo comercial integrados em uma Ãºnica operaÃ§Ã£o. 
           Pare de perder leads e comece a escalar com previsibilidade.
         </p>
 
@@ -201,7 +202,7 @@ function LogoBar() {
   return (
     <section className="logo-bar">
       <div className="container">
-        <p className="logo-bar__title">Empresas que confiam na Dual Leads</p>
+        <p className="logo-bar__title">Empresas que confiam na D&apos;Leads</p>
         <div className="logo-bar__track">
           {[1, 2, 3, 4, 5, 6].map((i) => (
             <div key={i} className="logo-bar__item">
@@ -219,12 +220,12 @@ function Services() {
     <section className="services" id="servicos">
       <div className="container">
         <div className="section-header">
-          <span className="section-tag">Serviços</span>
+          <span className="section-tag">ServiÃ§os</span>
           <h2 className="section-title">
-            Tudo que você precisa para <span className="gradient-text">vender mais</span>
+            Tudo que vocÃª precisa para <span className="gradient-text">vender mais</span>
           </h2>
           <p className="section-subtitle">
-            Uma estrutura completa de marketing e vendas operando pelo seu negócio.
+            Uma estrutura completa de marketing e vendas operando pelo seu negÃ³cio.
           </p>
         </div>
 
@@ -257,12 +258,12 @@ function Method() {
     <section className="method" id="metodo">
       <div className="container">
         <div className="section-header section-header--light">
-          <span className="section-tag">Método</span>
+          <span className="section-tag">MÃ©todo</span>
           <h2 className="section-title">
-            Do diagnóstico ao <span className="gradient-text">resultado</span>
+            Do diagnÃ³stico ao <span className="gradient-text">resultado</span>
           </h2>
           <p className="section-subtitle">
-            Um processo validado com mais de 150 empresas para estruturar sua máquina de vendas.
+            Um processo validado com mais de 150 empresas para estruturar sua mÃ¡quina de vendas.
           </p>
         </div>
 
@@ -281,7 +282,7 @@ function Method() {
 
         <div className="method__cta">
           <a href={whatsappHref} target="_blank" rel="noreferrer" className="btn btn--primary btn--large">
-            Iniciar meu diagnóstico gratuito
+            Iniciar meu diagnÃ³stico gratuito
           </a>
         </div>
       </div>
@@ -303,7 +304,7 @@ function Testimonials() {
         <div className="testimonials__grid">
           {testimonials.map((testimonial, index) => (
             <article key={index} className="testimonial-card">
-              <div className="testimonial-card__stars">★★★★★</div>
+              <div className="testimonial-card__stars">â˜…â˜…â˜…â˜…â˜…</div>
               <p className="testimonial-card__text">"{testimonial.text}"</p>
               <div className="testimonial-card__author">
                 <div className="testimonial-card__avatar">{testimonial.avatar}</div>
@@ -363,12 +364,12 @@ function CTA() {
       <div className="container">
         <div className="cta__box">
           <div className="cta__content">
-            <span className="section-tag">Próximo passo</span>
+            <span className="section-tag">PrÃ³ximo passo</span>
             <h2 className="cta__title">
               Pronto para <span className="gradient-text">escalar</span> suas vendas?
             </h2>
             <p className="cta__subtitle">
-              Agende uma conversa gratuita com nosso time e descubra como podemos ajudar seu negócio a crescer.
+              Agende uma conversa gratuita com nosso time e descubra como podemos ajudar seu negÃ³cio a crescer.
             </p>
             
             <div className="cta__buttons">
@@ -406,17 +407,17 @@ function Footer() {
       <div className="container footer__inner">
         <div className="footer__brand">
           <a href="#inicio" className="logo">
-            <span className="logo__mark">DL</span>
-            <span className="logo__text">Dual Leads</span>
+            <img className="logo__image" src={dleadsLogo} alt="Logo D'Leads" />
+          <span className="logo__text">D&apos;Leads</span>
           </a>
-          <p>Marketing, mídia paga e processos comerciais para empresas que querem crescer.</p>
+          <p>Marketing, mÃ­dia paga e processos comerciais para empresas que querem crescer.</p>
         </div>
 
         <div className="footer__links">
           <div>
-            <h4>Navegação</h4>
-            <a href="#servicos">Serviços</a>
-            <a href="#metodo">Método</a>
+            <h4>NavegaÃ§Ã£o</h4>
+            <a href="#servicos">ServiÃ§os</a>
+            <a href="#metodo">MÃ©todo</a>
             <a href="#depoimentos">Depoimentos</a>
             <a href="#faq">FAQ</a>
           </div>
@@ -428,7 +429,7 @@ function Footer() {
         </div>
 
         <div className="footer__bottom">
-          <p>© 2024 Dual Leads. Todos os direitos reservados.</p>
+          <p>Â© 2024 D&apos;Leads. Todos os direitos reservados.</p>
         </div>
       </div>
     </footer>
@@ -466,3 +467,7 @@ export default function App() {
     </>
   );
 }
+
+
+
+

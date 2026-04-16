@@ -1,312 +1,468 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
+// ============================================
+// DADOS
+// ============================================
 const whatsappHref =
-  "https://wa.me/556181963957?text=Ola%2C%20vim%20pelo%20site%20da%20Dual%20Leads%20e%20quero%20entender%20como%20voces%20podem%20operar%20marketing%2C%20midia%20paga%20e%20comercial%20para%20o%20meu%20negocio.";
+  "https://wa.me/556181963957?text=Olá!%20Vim%20pelo%20site%20da%20Dual%20Leads%20e%20quero%20estruturar%20meu%20marketing%20e%20vendas.";
 
 const metrics = [
-  ["Midia paga", "Google Ads e Meta Ads com gestao ativa e leitura comercial."],
-  ["Marketing", "Implementacao de criativos, paginas, mensagens e ofertas."],
-  ["Comercial", "Processos para atender, qualificar, recuperar e fechar."],
-  ["Tecnologia", "CRM, automacoes, tracking e dados conectando a operacao."],
+  { value: "+150", label: "Clientes atendidos" },
+  { value: "+R$12M", label: "Em vendas geradas" },
+  { value: "+5", label: "Anos de mercado" },
+  { value: "4.9", label: "Avaliação média" },
 ];
 
-const method = [
-  ["Aquisicao", "Atrair a audiencia certa e gerar demanda com criterio."],
-  ["Engajamento", "Fazer a comunicacao sustentar interesse e resposta."],
-  ["Comercial", "Transformar lead em conversa, proposta e fechamento."],
-  ["Retencao", "Criar acompanhamento e recorrencia para manter o crescimento."],
-];
-
-const modules = [
+const services = [
   {
-    title: "Trafego pago",
-    tag: "Modulo 01",
-    text:
-      "Gestao de campanhas com foco em previsibilidade, controle de investimento e abastecimento do atendimento com oportunidades reais.",
-    items: ["Meta Ads", "Google Ads", "Remarketing", "Otimizacao recorrente"],
+    icon: "📊",
+    title: "Mídia Paga",
+    description: "Google Ads e Meta Ads com gestão ativa, otimização contínua e foco em ROI.",
+    items: ["Google Ads", "Meta Ads", "Remarketing", "Otimização de conversão"],
   },
   {
-    title: "Implementacao de marketing",
-    tag: "Modulo 02",
-    text:
-      "Estruturamos paginas, ofertas, criativos, copys e pontos de conversao para o marketing nao operar pela metade.",
-    items: ["Landing pages", "Criativos", "Copy", "Arquitetura de campanha"],
+    icon: "🎯",
+    title: "Marketing Digital",
+    description: "Landing pages, criativos, copy e ofertas que convertem visitantes em leads.",
+    items: ["Landing Pages", "Criativos", "Copywriting", "Funis de venda"],
   },
   {
-    title: "Implementacao comercial",
-    tag: "Modulo 03",
-    text:
-      "Ajustamos o processo entre lead e venda para sua empresa parar de desperdiçar oportunidade por falta de rotina e processo.",
-    items: ["Qualificacao", "Follow-up", "Recuperacao", "Roteiro comercial"],
+    icon: "💼",
+    title: "Processo Comercial",
+    description: "Scripts, CRM e rotinas que transformam leads em clientes pagantes.",
+    items: ["Qualificação", "Follow-up", "Scripts de venda", "Recuperação"],
   },
   {
-    title: "Tecnologia e dados",
-    tag: "Modulo 04",
-    text:
-      "Conectamos CRM, automacoes, dashboards e rastreamento para que a operacao ganhe velocidade e leitura de decisao.",
-    items: ["CRM", "Dashboards", "Automacoes", "Tracking"],
+    icon: "⚙️",
+    title: "Tecnologia & Dados",
+    description: "Automações, dashboards e tracking para decisões baseadas em dados reais.",
+    items: ["CRM", "Automações", "Dashboards", "Tracking avançado"],
   },
-];
-
-const sectors = [
-  "Negocios locais com necessidade de demanda previsivel",
-  "Empresas de servico com ticket medio mais alto",
-  "Operacoes que precisam alinhar marketing e vendas",
-  "Clinicas, estetica, imobiliario, decoracao e educacao",
-  "Negocios que querem crescer sem depender de improviso",
 ];
 
 const steps = [
-  ["01", "Diagnostico e direcao", "Leitura de meta, gargalo, estrutura atual e maturidade da operacao."],
-  ["02", "Montagem da maquina", "Configuracao do marketing, dos canais, da mensagem e dos processos comerciais."],
-  ["03", "Operacao e melhoria", "Acompanhamento semanal com teste, ajuste e decisao orientada por dados."],
+  {
+    number: "01",
+    title: "Diagnóstico",
+    description: "Analisamos seu negócio, metas, gargalos e oportunidades de crescimento.",
+  },
+  {
+    number: "02",
+    title: "Estruturação",
+    description: "Montamos sua máquina de vendas: tráfego, páginas, CRM e processos.",
+  },
+  {
+    number: "03",
+    title: "Operação",
+    description: "Executamos, otimizamos e escalamos com acompanhamento semanal.",
+  },
 ];
 
-export default function App() {
+const testimonials = [
+  {
+    name: "Carlos Mendes",
+    role: "CEO, TechSolutions",
+    text: "Em 3 meses triplicamos nossos leads qualificados. A Dual Leads entende de verdade o que é performance.",
+    avatar: "CM",
+  },
+  {
+    name: "Ana Paula",
+    role: "Diretora, Clínica Estética",
+    text: "Finalmente encontramos uma assessoria que entrega resultado de verdade. Recomendo demais!",
+    avatar: "AP",
+  },
+  {
+    name: "Roberto Silva",
+    role: "Founder, Imobiliária RS",
+    text: "O processo comercial que implementaram mudou nosso jogo. Vendemos 40% mais no primeiro trimestre.",
+    avatar: "RS",
+  },
+];
+
+const faqs = [
+  {
+    question: "Quanto tempo para ver resultados?",
+    answer: "Nossos clientes começam a ver resultados nas primeiras 2-4 semanas. Resultados consistentes e escaláveis geralmente aparecem a partir do segundo mês.",
+  },
+  {
+    question: "Qual o investimento mínimo em mídia?",
+    answer: "Recomendamos um investimento mínimo de R$3.000/mês em mídia paga para ter dados suficientes para otimização. O valor ideal depende do seu mercado e metas.",
+  },
+  {
+    question: "Vocês atendem qual tipo de empresa?",
+    answer: "Atendemos empresas de serviço, negócios locais, clínicas, imobiliárias, educação e qualquer negócio que venda para outras empresas ou consumidores finais.",
+  },
+  {
+    question: "Como funciona o acompanhamento?",
+    answer: "Você terá reuniões semanais de alinhamento, acesso a dashboards em tempo real e um canal direto de comunicação via WhatsApp para dúvidas rápidas.",
+  },
+];
+
+// ============================================
+// COMPONENTES
+// ============================================
+function Header() {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setIsScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <div className="site-shell">
-      <a className="floating-whatsapp" href={whatsappHref} target="_blank" rel="noreferrer">
-        Falar no WhatsApp
-      </a>
+    <header className={`header ${isScrolled ? "header--scrolled" : ""}`}>
+      <div className="container header__inner">
+        <a href="#inicio" className="logo">
+          <span className="logo__mark">DL</span>
+          <span className="logo__text">Dual Leads</span>
+        </a>
 
-      <header className="topbar">
-        <div className="container topbar-inner">
-          <a className="brand" href="#inicio" aria-label="Dual Leads">
-            <span className="brand-mark">DL</span>
-            <span className="brand-copy">
-              <strong>Dual Leads</strong>
-              <small>Midia paga, marketing, comercial e tecnologia</small>
-            </span>
+        <nav className={`nav ${isMobileMenuOpen ? "nav--open" : ""}`}>
+          <a href="#servicos" onClick={() => setIsMobileMenuOpen(false)}>Serviços</a>
+          <a href="#metodo" onClick={() => setIsMobileMenuOpen(false)}>Método</a>
+          <a href="#depoimentos" onClick={() => setIsMobileMenuOpen(false)}>Depoimentos</a>
+          <a href="#faq" onClick={() => setIsMobileMenuOpen(false)}>FAQ</a>
+        </nav>
+
+        <a href={whatsappHref} target="_blank" rel="noreferrer" className="btn btn--primary btn--header">
+          Falar com especialista
+        </a>
+
+        <button 
+          className={`menu-toggle ${isMobileMenuOpen ? "menu-toggle--active" : ""}`}
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          aria-label="Menu"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </header>
+  );
+}
+
+function Hero() {
+  return (
+    <section className="hero" id="inicio">
+      <div className="hero__bg">
+        <div className="hero__glow hero__glow--1"></div>
+        <div className="hero__glow hero__glow--2"></div>
+      </div>
+      
+      <div className="container hero__content">
+        <div className="hero__badge">
+          <span className="pulse"></span>
+          🚀 Vagas limitadas para Abril
+        </div>
+
+        <h1 className="hero__title">
+          Estruturamos seu <span className="gradient-text">marketing e vendas</span> para você vender mais todos os meses
+        </h1>
+
+        <p className="hero__subtitle">
+          Mídia paga, landing pages, CRM e processo comercial integrados em uma única operação. 
+          Pare de perder leads e comece a escalar com previsibilidade.
+        </p>
+
+        <div className="hero__cta">
+          <a href={whatsappHref} target="_blank" rel="noreferrer" className="btn btn--primary btn--large">
+            Quero escalar minhas vendas
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
           </a>
-
-          <nav className="nav">
-            <a href="#metodo">Metodo</a>
-            <a href="#modulos">Servicos</a>
-            <a href="#empresa">Empresa</a>
-            <a href="#contato">Contato</a>
-          </nav>
-
-          <a className="topbar-cta" href={whatsappHref} target="_blank" rel="noreferrer">
-            Chamar agora
+          <a href="#servicos" className="btn btn--ghost btn--large">
+            Ver como funciona
           </a>
         </div>
-      </header>
 
-      <main>
-        <section className="hero" id="inicio">
-          <div className="container hero-layout">
-            <div className="hero-copy">
-              <span className="eyebrow">Operacao para negocios no Brasil</span>
-              <h1>Montamos marketing, midia paga e processo comercial conforme a necessidade do seu negocio.</h1>
-              <p className="hero-lead">
-                A Dual Leads opera marketing, trafego, tecnologia e comercial para empresas que
-                precisam de crescimento com estrutura. O foco maior esta no manejo de midia paga e
-                na construcao de processos que sustentam venda.
-              </p>
-
-              <div className="hero-actions">
-                <a className="button primary" href={whatsappHref} target="_blank" rel="noreferrer">
-                  Falar no WhatsApp
-                </a>
-                <a className="button secondary" href="#modulos">
-                  Ver estrutura
-                </a>
-              </div>
-
-              <div className="hero-proof">
-                <div>
-                  <strong>Empresa institucional</strong>
-                  <span>Posicionamento premium com foco em conversao.</span>
-                </div>
-                <div>
-                  <strong>Atendimento Brasil</strong>
-                  <span>Operacao digital com contato direto e rapido.</span>
-                </div>
-              </div>
+        <div className="hero__metrics">
+          {metrics.map((metric, index) => (
+            <div key={index} className="metric">
+              <span className="metric__value">{metric.value}</span>
+              <span className="metric__label">{metric.label}</span>
             </div>
+          ))}
+        </div>
+      </div>
 
-            <div className="hero-stage">
-              <article className="stage-card main">
-                <span className="card-tag">Dual Leads</span>
-                <h2>Marketing que conversa com o atendimento, com o processo e com o caixa.</h2>
-                <p>
-                  Nao e so sobre subir campanha. E sobre construir uma maquina comercial que saiba
-                  captar, responder, acompanhar e vender.
-                </p>
-              </article>
+      <div className="hero__scroll">
+        <span>Role para descobrir</span>
+        <div className="scroll-indicator"></div>
+      </div>
+    </section>
+  );
+}
 
-              <div className="stage-grid">
-                {metrics.map(([title, text]) => (
-                  <article className="stage-card" key={title}>
-                    <span className="card-tag">Frente de entrega</span>
-                    <h3>{title}</h3>
-                    <p>{text}</p>
-                  </article>
+function LogoBar() {
+  return (
+    <section className="logo-bar">
+      <div className="container">
+        <p className="logo-bar__title">Empresas que confiam na Dual Leads</p>
+        <div className="logo-bar__track">
+          {[1, 2, 3, 4, 5, 6].map((i) => (
+            <div key={i} className="logo-bar__item">
+              <span>Cliente {i}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Services() {
+  return (
+    <section className="services" id="servicos">
+      <div className="container">
+        <div className="section-header">
+          <span className="section-tag">Serviços</span>
+          <h2 className="section-title">
+            Tudo que você precisa para <span className="gradient-text">vender mais</span>
+          </h2>
+          <p className="section-subtitle">
+            Uma estrutura completa de marketing e vendas operando pelo seu negócio.
+          </p>
+        </div>
+
+        <div className="services__grid">
+          {services.map((service, index) => (
+            <article key={index} className="service-card">
+              <div className="service-card__icon">{service.icon}</div>
+              <h3 className="service-card__title">{service.title}</h3>
+              <p className="service-card__description">{service.description}</p>
+              <ul className="service-card__list">
+                {service.items.map((item, i) => (
+                  <li key={i}>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <polyline points="20 6 9 17 4 12"/>
+                    </svg>
+                    {item}
+                  </li>
                 ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Method() {
+  return (
+    <section className="method" id="metodo">
+      <div className="container">
+        <div className="section-header section-header--light">
+          <span className="section-tag">Método</span>
+          <h2 className="section-title">
+            Do diagnóstico ao <span className="gradient-text">resultado</span>
+          </h2>
+          <p className="section-subtitle">
+            Um processo validado com mais de 150 empresas para estruturar sua máquina de vendas.
+          </p>
+        </div>
+
+        <div className="method__steps">
+          {steps.map((step, index) => (
+            <div key={index} className="step">
+              <div className="step__number">{step.number}</div>
+              <div className="step__content">
+                <h3 className="step__title">{step.title}</h3>
+                <p className="step__description">{step.description}</p>
+              </div>
+              {index < steps.length - 1 && <div className="step__connector"></div>}
+            </div>
+          ))}
+        </div>
+
+        <div className="method__cta">
+          <a href={whatsappHref} target="_blank" rel="noreferrer" className="btn btn--primary btn--large">
+            Iniciar meu diagnóstico gratuito
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Testimonials() {
+  return (
+    <section className="testimonials" id="depoimentos">
+      <div className="container">
+        <div className="section-header">
+          <span className="section-tag">Depoimentos</span>
+          <h2 className="section-title">
+            O que nossos <span className="gradient-text">clientes</span> dizem
+          </h2>
+        </div>
+
+        <div className="testimonials__grid">
+          {testimonials.map((testimonial, index) => (
+            <article key={index} className="testimonial-card">
+              <div className="testimonial-card__stars">★★★★★</div>
+              <p className="testimonial-card__text">"{testimonial.text}"</p>
+              <div className="testimonial-card__author">
+                <div className="testimonial-card__avatar">{testimonial.avatar}</div>
+                <div>
+                  <strong>{testimonial.name}</strong>
+                  <span>{testimonial.role}</span>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function FAQ() {
+  const [openIndex, setOpenIndex] = useState(null);
+
+  return (
+    <section className="faq" id="faq">
+      <div className="container">
+        <div className="section-header section-header--light">
+          <span className="section-tag">FAQ</span>
+          <h2 className="section-title">
+            Perguntas <span className="gradient-text">frequentes</span>
+          </h2>
+        </div>
+
+        <div className="faq__list">
+          {faqs.map((faq, index) => (
+            <div 
+              key={index} 
+              className={`faq-item ${openIndex === index ? "faq-item--open" : ""}`}
+              onClick={() => setOpenIndex(openIndex === index ? null : index)}
+            >
+              <div className="faq-item__question">
+                <span>{faq.question}</span>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M6 9l6 6 6-6"/>
+                </svg>
+              </div>
+              <div className="faq-item__answer">
+                <p>{faq.answer}</p>
               </div>
             </div>
-          </div>
-        </section>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
 
-        <section className="ticker-band">
-          <div className="ticker-track">
-            <span>Midia paga</span>
-            <span>Implementacao de marketing</span>
-            <span>Implementacao comercial</span>
-            <span>Tecnologia e CRM</span>
-            <span>Google Ads e Meta Ads</span>
-            <span>Processo de vendas</span>
-          </div>
-        </section>
-
-        <section className="metrics-section" id="metodo">
-          <div className="container">
-            <div className="section-head center">
-              <span className="eyebrow dark">Metodo</span>
-              <h2>Existe um fluxo para escalar com mais consistencia. O problema e quando cada parte opera sozinha.</h2>
-              <p>
-                A Dual Leads organiza aquisicao, relacionamento, comercial e retencao para o
-                crescimento nao depender de sorte ou improviso.
-              </p>
-            </div>
-
-            <div className="method-grid">
-              {method.map(([title, text]) => (
-                <article className="method-card" key={title}>
-                  <span className="card-tag dark">Etapa</span>
-                  <h3>{title}</h3>
-                  <p>{text}</p>
-                </article>
-              ))}
-            </div>
-
-            <div className="center-cta">
-              <a className="button primary" href={whatsappHref} target="_blank" rel="noreferrer">
-                Impulsionar minha operacao
-              </a>
-            </div>
-          </div>
-        </section>
-
-        <section className="modules-section" id="modulos">
-          <div className="container">
-            <div className="section-head light">
-              <span className="eyebrow">Servicos</span>
-              <h2>Uma estrutura modular para marketing, comercial e tecnologia trabalharem na mesma direcao.</h2>
-              <p>
-                A inspiracao aqui e uma pagina com leitura comercial mais forte: blocos objetivos,
-                servicos bem separados e clareza de como cada modulo ajuda a gerar resultado.
-              </p>
-            </div>
-
-            <div className="modules-grid">
-              {modules.map((module) => (
-                <article className="module-card" key={module.title}>
-                  <span className="card-tag">{module.tag}</span>
-                  <h3>{module.title}</h3>
-                  <p>{module.text}</p>
-                  <ul>
-                    {module.items.map((item) => (
-                      <li key={item}>{item}</li>
-                    ))}
-                  </ul>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="operational-section">
-          <div className="container operational-layout">
-            <div className="section-head">
-              <span className="eyebrow dark">Como entra</span>
-              <h2>Voce pode usar a Dual Leads como reforco do time ou como operacao externa completa.</h2>
-              <p>
-                O trabalho pode entrar para destravar uma frente especifica ou assumir a estrutura
-                mais critica: trafego pago, criativos, paginas, CRM, comercial e acompanhamento.
-              </p>
-            </div>
-
-            <div className="steps-list">
-              {steps.map(([index, title, text]) => (
-                <article className="step-card" key={index}>
-                  <span className="step-index">{index}</span>
-                  <div>
-                    <h3>{title}</h3>
-                    <p>{text}</p>
-                  </div>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="sectors-section">
-          <div className="container sectors-layout">
-            <div className="section-head">
-              <span className="eyebrow dark">Onde faz sentido</span>
-              <h2>Especialmente forte para empresas que precisam de lead, rotina comercial e decisao baseada em dados.</h2>
-            </div>
-
-            <div className="sector-grid">
-              {sectors.map((item) => (
-                <article className="sector-card" key={item}>
-                  <span className="sector-bullet" />
-                  <p>{item}</p>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="company-section" id="empresa">
-          <div className="container company-grid">
-            <article className="company-card hero-card">
-              <span className="card-tag dark">Empresa</span>
-              <h2>Dual Leads. Uma operadora de crescimento com linguagem comercial, leitura de performance e execucao pratica.</h2>
-              <p>
-                A pagina foi reposicionada para uma pegada mais proxima da referencia: headline
-                forte, seções orientadas a venda e uma narrativa institucional mais agressiva sem
-                perder o aspecto premium.
-              </p>
-            </article>
-
-            <article className="company-card">
-              <span className="card-tag dark">Contato</span>
-              <h3>+55 61 8196-3957</h3>
-              <p>WhatsApp principal para conversar com rapidez e iniciar o atendimento.</p>
-            </article>
-
-            <article className="company-card">
-              <span className="card-tag dark">Email</span>
-              <h3>agenciadlead@gmail.com</h3>
-              <p>Canal institucional para propostas, alinhamentos e novos projetos.</p>
-            </article>
-          </div>
-        </section>
-
-        <section className="cta-section" id="contato">
-          <div className="container cta-shell">
-            <div>
-              <span className="eyebrow dark">Proximo passo</span>
-              <h2>Se fizer sentido estruturar marketing, trafego e comercial com mais criterio, a conversa pode comecar agora.</h2>
-              <p>
-                O objetivo desta pagina e deixar claro que a Dual Leads nao entrega um pacote
-                raso. Ela entra para operar.
-              </p>
-            </div>
-
-            <div className="cta-actions">
-              <a className="button primary block" href={whatsappHref} target="_blank" rel="noreferrer">
+function CTA() {
+  return (
+    <section className="cta">
+      <div className="container">
+        <div className="cta__box">
+          <div className="cta__content">
+            <span className="section-tag">Próximo passo</span>
+            <h2 className="cta__title">
+              Pronto para <span className="gradient-text">escalar</span> suas vendas?
+            </h2>
+            <p className="cta__subtitle">
+              Agende uma conversa gratuita com nosso time e descubra como podemos ajudar seu negócio a crescer.
+            </p>
+            
+            <div className="cta__buttons">
+              <a href={whatsappHref} target="_blank" rel="noreferrer" className="btn btn--primary btn--large">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                </svg>
                 Falar no WhatsApp
               </a>
-              <a className="button tertiary block" href="mailto:agenciadlead@gmail.com">
+              <a href="mailto:agenciadlead@gmail.com" className="btn btn--outline btn--large">
                 Enviar email
               </a>
             </div>
+
+            <div className="cta__contact">
+              <div>
+                <strong>WhatsApp</strong>
+                <span>+55 61 8196-3957</span>
+              </div>
+              <div>
+                <strong>Email</strong>
+                <span>agenciadlead@gmail.com</span>
+              </div>
+            </div>
           </div>
-        </section>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Footer() {
+  return (
+    <footer className="footer">
+      <div className="container footer__inner">
+        <div className="footer__brand">
+          <a href="#inicio" className="logo">
+            <span className="logo__mark">DL</span>
+            <span className="logo__text">Dual Leads</span>
+          </a>
+          <p>Marketing, mídia paga e processos comerciais para empresas que querem crescer.</p>
+        </div>
+
+        <div className="footer__links">
+          <div>
+            <h4>Navegação</h4>
+            <a href="#servicos">Serviços</a>
+            <a href="#metodo">Método</a>
+            <a href="#depoimentos">Depoimentos</a>
+            <a href="#faq">FAQ</a>
+          </div>
+          <div>
+            <h4>Contato</h4>
+            <a href={whatsappHref} target="_blank" rel="noreferrer">WhatsApp</a>
+            <a href="mailto:agenciadlead@gmail.com">Email</a>
+          </div>
+        </div>
+
+        <div className="footer__bottom">
+          <p>© 2024 Dual Leads. Todos os direitos reservados.</p>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+function WhatsAppButton() {
+  return (
+    <a href={whatsappHref} target="_blank" rel="noreferrer" className="whatsapp-float" aria-label="WhatsApp">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+      </svg>
+    </a>
+  );
+}
+
+// ============================================
+// APP PRINCIPAL
+// ============================================
+export default function App() {
+  return (
+    <>
+      <Header />
+      <main>
+        <Hero />
+        <LogoBar />
+        <Services />
+        <Method />
+        <Testimonials />
+        <FAQ />
+        <CTA />
       </main>
-    </div>
+      <Footer />
+      <WhatsAppButton />
+    </>
   );
 }

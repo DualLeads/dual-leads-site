@@ -3,66 +3,63 @@ import React from "react";
 const whatsappHref =
   "https://wa.me/556181963957?text=Ola%2C%20vim%20pelo%20site%20da%20Dual%20Leads%20e%20quero%20entender%20como%20voces%20podem%20operar%20marketing%2C%20midia%20paga%20e%20comercial%20para%20o%20meu%20negocio.";
 
-const navigation = [
-  ["Servicos", "#servicos"],
-  ["Metodo", "#metodo"],
-  ["Setores", "#setores"],
-  ["Empresa", "#empresa"],
-  ["Contato", "#contato"],
+const metrics = [
+  ["Midia paga", "Google Ads e Meta Ads com gestao ativa e leitura comercial."],
+  ["Marketing", "Implementacao de criativos, paginas, mensagens e ofertas."],
+  ["Comercial", "Processos para atender, qualificar, recuperar e fechar."],
+  ["Tecnologia", "CRM, automacoes, tracking e dados conectando a operacao."],
 ];
 
-const highlights = [
-  ["Midia paga com gestao ativa", "Operacao de Meta Ads e Google Ads com leitura diaria e decisao comercial."],
-  ["Marketing com implementacao", "Nao entregamos so plano. Entramos na execucao da maquina de aquisicao."],
-  ["Comercial com processo", "Ajustamos o caminho entre lead, atendimento, follow-up e fechamento."],
+const method = [
+  ["Aquisicao", "Atrair a audiencia certa e gerar demanda com criterio."],
+  ["Engajamento", "Fazer a comunicacao sustentar interesse e resposta."],
+  ["Comercial", "Transformar lead em conversa, proposta e fechamento."],
+  ["Retencao", "Criar acompanhamento e recorrencia para manter o crescimento."],
 ];
 
-const services = [
+const modules = [
   {
-    id: "01",
-    title: "Midia paga e performance",
+    title: "Trafego pago",
+    tag: "Modulo 01",
     text:
-      "Planejamento, criacao da estrutura de campanhas, segmentacao, remarketing, testes e otimizacao para captar demanda com mais consistencia.",
+      "Gestao de campanhas com foco em previsibilidade, controle de investimento e abastecimento do atendimento com oportunidades reais.",
+    items: ["Meta Ads", "Google Ads", "Remarketing", "Otimizacao recorrente"],
   },
   {
-    id: "02",
     title: "Implementacao de marketing",
+    tag: "Modulo 02",
     text:
-      "Organizamos a base da operacao: oferta, pagina, criativos, copy, eventos, mensageria e acompanhamento do funil com foco real em conversao.",
+      "Estruturamos paginas, ofertas, criativos, copys e pontos de conversao para o marketing nao operar pela metade.",
+    items: ["Landing pages", "Criativos", "Copy", "Arquitetura de campanha"],
   },
   {
-    id: "03",
     title: "Implementacao comercial",
+    tag: "Modulo 03",
     text:
-      "Desenhamos processos para atendimento, qualificacao, recuperacao de oportunidades e rotina comercial para o lead nao morrer na mao do time.",
+      "Ajustamos o processo entre lead e venda para sua empresa parar de desperdiçar oportunidade por falta de rotina e processo.",
+    items: ["Qualificacao", "Follow-up", "Recuperacao", "Roteiro comercial"],
   },
   {
-    id: "04",
-    title: "Tecnologia aplicada ao crescimento",
+    title: "Tecnologia e dados",
+    tag: "Modulo 04",
     text:
-      "Conectamos formularios, CRMs, automacoes, rastreamento e dados para dar previsibilidade e velocidade para a operacao.",
+      "Conectamos CRM, automacoes, dashboards e rastreamento para que a operacao ganhe velocidade e leitura de decisao.",
+    items: ["CRM", "Dashboards", "Automacoes", "Tracking"],
   },
 ];
 
 const sectors = [
-  "Negocios locais e servicos especializados",
-  "Infoprodutos, experts e operacoes de lancamento",
-  "Clinicas, estetica e saude privada",
-  "Imobiliario, decoracao, arquitetura e ticket medio maior",
-  "Empresas que precisam alinhar marketing e comercial",
+  "Negocios locais com necessidade de demanda previsivel",
+  "Empresas de servico com ticket medio mais alto",
+  "Operacoes que precisam alinhar marketing e vendas",
+  "Clinicas, estetica, imobiliario, decoracao e educacao",
+  "Negocios que querem crescer sem depender de improviso",
 ];
 
-const methodSteps = [
-  ["Diagnostico", "Entendemos meta, gargalo, oferta e maturidade comercial antes de colocar verba para rodar."],
-  ["Arquitetura", "Estruturamos campanhas, mensagens, paginas e pontos de contato para a operacao nascer organizada."],
-  ["Aceleracao", "Entramos em rotina de testes, leitura e melhoria continua com foco em lead qualificado e resposta rapida."],
-  ["Escala com criterio", "Aumentamos volume quando a estrutura de marketing e comercial mostra capacidade de sustentar crescimento."],
-];
-
-const numbers = [
-  ["Marketing, trafego e tecnologia", "Uma frase clara sobre o que fazemos e como entramos na operacao."],
-  ["Brasil", "Atendimento com leitura de mercado local e ambicao de crescimento nacional."],
-  ["Contato direto", "WhatsApp e email para iniciar conversas com agilidade."],
+const steps = [
+  ["01", "Diagnostico e direcao", "Leitura de meta, gargalo, estrutura atual e maturidade da operacao."],
+  ["02", "Montagem da maquina", "Configuracao do marketing, dos canais, da mensagem e dos processos comerciais."],
+  ["03", "Operacao e melhoria", "Acompanhamento semanal com teste, ajuste e decisao orientada por dados."],
 ];
 
 export default function App() {
@@ -78,74 +75,70 @@ export default function App() {
             <span className="brand-mark">DL</span>
             <span className="brand-copy">
               <strong>Dual Leads</strong>
-              <small>Marketing, midia paga e processos comerciais</small>
+              <small>Midia paga, marketing, comercial e tecnologia</small>
             </span>
           </a>
 
           <nav className="nav">
-            {navigation.map(([label, href]) => (
-              <a key={href} href={href}>
-                {label}
-              </a>
-            ))}
+            <a href="#metodo">Metodo</a>
+            <a href="#modulos">Servicos</a>
+            <a href="#empresa">Empresa</a>
+            <a href="#contato">Contato</a>
           </nav>
 
           <a className="topbar-cta" href={whatsappHref} target="_blank" rel="noreferrer">
-            Falar no WhatsApp
+            Chamar agora
           </a>
         </div>
       </header>
 
       <main>
         <section className="hero" id="inicio">
-          <div className="container hero-grid">
+          <div className="container hero-layout">
             <div className="hero-copy">
-              <span className="eyebrow">Dual Leads</span>
-              <h1>
-                Operacao de crescimento para negocios que precisam vender com mais metodo.
-              </h1>
+              <span className="eyebrow">Operacao para negocios no Brasil</span>
+              <h1>Montamos marketing, midia paga e processo comercial conforme a necessidade do seu negocio.</h1>
               <p className="hero-lead">
-                A Dual Leads opera marketing, trafego, tecnologia e processos comerciais para
-                transformar demanda em oportunidades reais de venda. Nosso foco maior esta no
-                manejo de midia paga e na estrutura comercial que sustenta o resultado.
-              </p>
-              <p className="hero-subtitle">
-                Site institucional pensado para transmitir presenca, sofisticacao e clareza de
-                entrega desde o primeiro scroll.
+                A Dual Leads opera marketing, trafego, tecnologia e comercial para empresas que
+                precisam de crescimento com estrutura. O foco maior esta no manejo de midia paga e
+                na construcao de processos que sustentam venda.
               </p>
 
               <div className="hero-actions">
                 <a className="button primary" href={whatsappHref} target="_blank" rel="noreferrer">
                   Falar no WhatsApp
                 </a>
-                <a className="button secondary" href="#servicos">
-                  Ver servicos
+                <a className="button secondary" href="#modulos">
+                  Ver estrutura
                 </a>
               </div>
 
-              <div className="hero-badges">
-                <span>Midia paga</span>
-                <span>Implementacao de marketing</span>
-                <span>Processos comerciais</span>
-                <span>Tecnologia</span>
+              <div className="hero-proof">
+                <div>
+                  <strong>Empresa institucional</strong>
+                  <span>Posicionamento premium com foco em conversao.</span>
+                </div>
+                <div>
+                  <strong>Atendimento Brasil</strong>
+                  <span>Operacao digital com contato direto e rapido.</span>
+                </div>
               </div>
             </div>
 
-            <div className="hero-panel">
-              <div className="panel-glow" />
-              <article className="signal-card glass">
-                <span className="card-label">Frase de posicionamento</span>
-                <h2>Marketing que conversa com o caixa, nao so com o alcance.</h2>
+            <div className="hero-stage">
+              <article className="stage-card main">
+                <span className="card-tag">Dual Leads</span>
+                <h2>Marketing que conversa com o atendimento, com o processo e com o caixa.</h2>
                 <p>
-                  A operacao precisa ligar anuncio, conversa, atendimento e fechamento. E isso
-                  exige mais do que impulsionar criativo bonito.
+                  Nao e so sobre subir campanha. E sobre construir uma maquina comercial que saiba
+                  captar, responder, acompanhar e vender.
                 </p>
               </article>
 
-              <div className="insight-grid">
-                {highlights.map(([title, text]) => (
-                  <article className="signal-card" key={title}>
-                    <span className="card-label">Dual Leads</span>
+              <div className="stage-grid">
+                {metrics.map(([title, text]) => (
+                  <article className="stage-card" key={title}>
+                    <span className="card-tag">Frente de entrega</span>
                     <h3>{title}</h3>
                     <p>{text}</p>
                   </article>
@@ -155,84 +148,110 @@ export default function App() {
           </div>
         </section>
 
-        <section className="statement-section">
-          <div className="container statement-grid">
-            {numbers.map(([title, text]) => (
-              <article className="statement-card" key={title}>
-                <span className="card-label">Base institucional</span>
-                <h3>{title}</h3>
-                <p>{text}</p>
-              </article>
-            ))}
+        <section className="ticker-band">
+          <div className="ticker-track">
+            <span>Midia paga</span>
+            <span>Implementacao de marketing</span>
+            <span>Implementacao comercial</span>
+            <span>Tecnologia e CRM</span>
+            <span>Google Ads e Meta Ads</span>
+            <span>Processo de vendas</span>
           </div>
         </section>
 
-        <section className="content-section" id="servicos">
+        <section className="metrics-section" id="metodo">
           <div className="container">
-            <div className="section-heading">
-              <span className="eyebrow dark">Servicos</span>
-              <h2>Uma empresa para estruturar aquisicao, conversao e crescimento.</h2>
+            <div className="section-head center">
+              <span className="eyebrow dark">Metodo</span>
+              <h2>Existe um fluxo para escalar com mais consistencia. O problema e quando cada parte opera sozinha.</h2>
               <p>
-                Usamos como base a logica de entrega que ja orienta projetos comerciais mais
-                sofisticados: clareza de oferta, implementacao de marketing, leitura de dados e
-                fortalecimento do processo comercial.
+                A Dual Leads organiza aquisicao, relacionamento, comercial e retencao para o
+                crescimento nao depender de sorte ou improviso.
               </p>
-            </div>
-
-            <div className="service-grid">
-              {services.map((service) => (
-                <article className="service-card" key={service.title}>
-                  <span className="service-index">{service.id}</span>
-                  <h3>{service.title}</h3>
-                  <p>{service.text}</p>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="content-section deep-section" id="metodo">
-          <div className="container method-layout">
-            <div className="section-heading narrow light">
-              <span className="eyebrow">Metodo</span>
-              <h2>Midia paga fica mais forte quando o comercial para de operar no improviso.</h2>
-              <p>
-                O trabalho da Dual Leads e fazer a operacao respirar como sistema: da campanha ao
-                atendimento, da tecnologia ao follow-up.
-              </p>
-              <a className="button primary" href={whatsappHref} target="_blank" rel="noreferrer">
-                Falar com a Dual Leads
-              </a>
             </div>
 
             <div className="method-grid">
-              {methodSteps.map(([title, text], index) => (
+              {method.map(([title, text]) => (
                 <article className="method-card" key={title}>
-                  <span className="method-number">0{index + 1}</span>
+                  <span className="card-tag dark">Etapa</span>
                   <h3>{title}</h3>
                   <p>{text}</p>
                 </article>
               ))}
             </div>
+
+            <div className="center-cta">
+              <a className="button primary" href={whatsappHref} target="_blank" rel="noreferrer">
+                Impulsionar minha operacao
+              </a>
+            </div>
           </div>
         </section>
 
-        <section className="content-section" id="setores">
-          <div className="container sectors-layout">
-            <div className="section-heading narrow">
-              <span className="eyebrow dark">Onde atuamos</span>
-              <h2>Estrutura para diferentes areas do marketing, com foco pesado em midia paga.</h2>
+        <section className="modules-section" id="modulos">
+          <div className="container">
+            <div className="section-head light">
+              <span className="eyebrow">Servicos</span>
+              <h2>Uma estrutura modular para marketing, comercial e tecnologia trabalharem na mesma direcao.</h2>
               <p>
-                A Dual Leads pode operar em diferentes contextos, mas cresce especialmente bem em
-                negocios que precisam alinhar geracao de demanda, velocidade comercial e controle
-                da operacao.
+                A inspiracao aqui e uma pagina com leitura comercial mais forte: blocos objetivos,
+                servicos bem separados e clareza de como cada modulo ajuda a gerar resultado.
               </p>
             </div>
 
-            <div className="sector-list">
+            <div className="modules-grid">
+              {modules.map((module) => (
+                <article className="module-card" key={module.title}>
+                  <span className="card-tag">{module.tag}</span>
+                  <h3>{module.title}</h3>
+                  <p>{module.text}</p>
+                  <ul>
+                    {module.items.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="operational-section">
+          <div className="container operational-layout">
+            <div className="section-head">
+              <span className="eyebrow dark">Como entra</span>
+              <h2>Voce pode usar a Dual Leads como reforco do time ou como operacao externa completa.</h2>
+              <p>
+                O trabalho pode entrar para destravar uma frente especifica ou assumir a estrutura
+                mais critica: trafego pago, criativos, paginas, CRM, comercial e acompanhamento.
+              </p>
+            </div>
+
+            <div className="steps-list">
+              {steps.map(([index, title, text]) => (
+                <article className="step-card" key={index}>
+                  <span className="step-index">{index}</span>
+                  <div>
+                    <h3>{title}</h3>
+                    <p>{text}</p>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="sectors-section">
+          <div className="container sectors-layout">
+            <div className="section-head">
+              <span className="eyebrow dark">Onde faz sentido</span>
+              <h2>Especialmente forte para empresas que precisam de lead, rotina comercial e decisao baseada em dados.</h2>
+            </div>
+
+            <div className="sector-grid">
               {sectors.map((item) => (
-                <article className="sector-item" key={item}>
-                  <span className="sector-dot" />
+                <article className="sector-card" key={item}>
+                  <span className="sector-bullet" />
                   <p>{item}</p>
                 </article>
               ))}
@@ -240,40 +259,40 @@ export default function App() {
           </div>
         </section>
 
-        <section className="content-section company-section" id="empresa">
+        <section className="company-section" id="empresa">
           <div className="container company-grid">
-            <article className="company-card large">
-              <span className="card-label">Empresa</span>
-              <h2>Dual Leads e uma operadora de crescimento para negocios no Brasil.</h2>
+            <article className="company-card hero-card">
+              <span className="card-tag dark">Empresa</span>
+              <h2>Dual Leads. Uma operadora de crescimento com linguagem comercial, leitura de performance e execucao pratica.</h2>
               <p>
-                A empresa foi posicionada para comunicar autoridade sem parecer engessada. O site
-                reforca que a entrega vai alem de campanhas: envolve marketing, trafego, tecnologia
-                e comercial trabalhando na mesma direcao.
+                A pagina foi reposicionada para uma pegada mais proxima da referencia: headline
+                forte, seções orientadas a venda e uma narrativa institucional mais agressiva sem
+                perder o aspecto premium.
               </p>
             </article>
 
             <article className="company-card">
-              <span className="card-label">Contato</span>
-              <h3>agenciadlead@gmail.com</h3>
-              <p>Canal direto para propostas, novos projetos e alinhamentos institucionais.</p>
+              <span className="card-tag dark">Contato</span>
+              <h3>+55 61 8196-3957</h3>
+              <p>WhatsApp principal para conversar com rapidez e iniciar o atendimento.</p>
             </article>
 
             <article className="company-card">
-              <span className="card-label">Base</span>
-              <h3>Brasil</h3>
-              <p>Operacao com leitura local, execucao digital e estrutura pronta para crescer.</p>
+              <span className="card-tag dark">Email</span>
+              <h3>agenciadlead@gmail.com</h3>
+              <p>Canal institucional para propostas, alinhamentos e novos projetos.</p>
             </article>
           </div>
         </section>
 
-        <section className="content-section cta-section" id="contato">
-          <div className="container cta-grid">
+        <section className="cta-section" id="contato">
+          <div className="container cta-shell">
             <div>
-              <span className="eyebrow dark">Contato</span>
-              <h2>Se a sua empresa precisa de mais do que anuncios soltos, a Dual Leads entra para operar.</h2>
+              <span className="eyebrow dark">Proximo passo</span>
+              <h2>Se fizer sentido estruturar marketing, trafego e comercial com mais criterio, a conversa pode comecar agora.</h2>
               <p>
-                O proximo passo pode comecar agora por WhatsApp ou email. A proposta do site e
-                deixar claro que existe metodo, presenca e estrutura real por tras da entrega.
+                O objetivo desta pagina e deixar claro que a Dual Leads nao entrega um pacote
+                raso. Ela entra para operar.
               </p>
             </div>
 

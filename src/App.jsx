@@ -1,3 +1,5 @@
+import React from "react";
+
 const whatsappHref =
   "https://wa.me/556181963957?text=Ola%2C%20vim%20pelo%20site%20da%20Dual%20Leads%20e%20quero%20entender%20como%20voces%20podem%20operar%20marketing%2C%20midia%20paga%20e%20comercial%20para%20o%20meu%20negocio.";
 

@@ -370,12 +370,17 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   gap: 14px;
 }
 
-.logo__icon {
+.logo__icon,
+.logo__image {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 46px;
   height: 46px;
+  flex-shrink: 0;
+}
+
+.logo__icon {
   background: var(--gradient-blue);
   border-radius: var(--radius-md);
   font-family: var(--font-display);
@@ -383,6 +388,12 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   font-size: 14px;
   color: white;
   letter-spacing: -0.02em;
+}
+
+.logo__image {
+  width: 52px;
+  height: 52px;
+  object-fit: contain;
 }
 
 .logo__text {

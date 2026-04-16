@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import logoTransparente from "./assets/logo_transparente_alta_resolucao.png";
 
 // ============================================
 // CONFIGURAÇÃO
@@ -195,9 +196,7 @@ function ScrollProgress() {
 function Logo() {
   return (
     <div className="logo">
-      <div className="logo__icon">
-        <span>DL</span>
-      </div>
+      <img className="logo__image" src={logoTransparente} alt="Logo Dual Leads" />
       <span className="logo__text">Dual Leads</span>
     </div>
   );

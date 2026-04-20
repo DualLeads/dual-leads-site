@@ -1,148 +1,228 @@
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import logoTransparente from './assets/logo_transparente_alta_resolucao.png';
-import { 
-  Target, 
-  BarChart3, 
-  Zap, 
-  Settings, 
-  ArrowRight, 
-  CheckCircle2, 
-  Menu, 
-  X,
+import React, { useEffect, useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
+import {
+  ArrowRight,
+  BarChart3,
+  Building2,
+  Check,
+  CheckCircle2,
   ChevronRight,
+  Database,
+  Mail,
+  MapPin,
+  Menu,
   MessageCircle,
+  Play,
+  Quote,
+  Settings,
+  ShieldCheck,
+  Star,
+  Target,
   TrendingUp,
   Users,
-  Database,
-  Play,
-  Star,
-  Quote,
-  Check
+  X,
+  Zap,
 } from 'lucide-react';
+import logoTransparente from './assets/logo_transparente_alta_resolucao.png';
 
-// ==================== DATA ====================
+const COMPANY = {
+  name: "D'Leads",
+  cnpj: '29.020.766/0001-10',
+  email: 'contato@dualeads.com',
+  whatsapp: '556181963957',
+  whatsappMessage:
+    "Olá! Quero entender como a D'Leads pode estruturar marketing, mídia paga e comercial para o meu negócio.",
+  city: 'Brasilia - DF, Brasil',
+  address:
+    'Aguas Claras Sul, Quadra 204, Condominio Residencial Fenix, Bloco B, 3 andar, Apartamento 301, Brasilia - DF, Brasil',
+};
+
 const services = [
   {
-    number: "01",
-    title: "Geração de Demanda",
-    description: "Geramos leads qualificados para sua empresa parar de queimar verba com demanda ruim.",
-    items: ["Meta Ads", "Google Ads", "Landing Pages", "Captação de Leads"],
+    number: '01',
+    title: 'Mídia paga e aquisição',
+    description:
+      'Planejamento, execução e otimização de campanhas para gerar demanda com mais intenção de compra.',
+    items: ['Google Ads', 'Meta Ads', 'Landing Pages', 'Aquisição'],
     icon: Target,
-    fullDescription: "Se sua empresa anuncia, mas ainda sofre com lead ruim, campanha instável ou falta de previsibilidade, o problema não é só tráfego. É estrutura. A Dual Leads monta a aquisição para atrair o público certo, com a oferta certa, e transformar investimento em oportunidade real de venda.",
+    fullDescription:
+      "A D'Leads estrutura a frente de aquisição com foco em previsibilidade comercial, leitura de dados e eficiência de investimento. Não operamos apenas anúncios: conectamos oferta, segmentação, jornada e meta de negócio.",
     benefits: [
-      "Campanhas com foco em oportunidade, não só clique",
-      "Segmentação para atrair lead com mais intenção",
-      "Estrutura de conversão alinhada com oferta e público",
-      "Testes contínuos para reduzir desperdício",
-      "Leitura clara dos números para otimizar com segurança"
+      'Planejamento de campanhas alinhado ao momento da empresa',
+      'Estrutura de tráfego orientada a lead qualificado e oportunidade real',
+      'Testes de criativo, público e oferta para reduzir desperdício',
+      'Acompanhamento de métricas de aquisição e eficiência',
+      'Ajustes contínuos com base em performance',
     ],
-    results: "Mais lead qualificado, menos desperdício e mais previsibilidade na aquisição."
+    results:
+      'Mais clareza sobre o investimento, melhor aproveitamento do tráfego e crescimento com base em dados.',
   },
   {
-    number: "02",
-    title: "Funil e Conversão",
-    description: "Corrigimos o funil para você parar de perder lead no meio do caminho.",
-    items: ["Mapeamento de Funil", "Qualificação", "Follow-up", "Conversão"],
+    number: '02',
+    title: 'Funil e conversão',
+    description:
+      'Organização da jornada comercial para reduzir perdas, aumentar resposta e melhorar a taxa de fechamento.',
+    items: ['Funil', 'Qualificação', 'Follow-up', 'Conversão'],
     icon: BarChart3,
-    fullDescription: "Muita empresa acha que precisa de mais lead, quando na verdade está desperdiçando os que já entram. Nós analisamos o funil, identificamos onde a conversão quebra e ajustamos o processo para fazer mais oportunidade avançar até a venda.",
+    fullDescription:
+      'Muitas operações perdem resultado entre a entrada do lead e a conversa comercial. Revisamos o funil, identificamos gargalos, ajustamos critérios de qualificação e organizamos a passagem entre marketing e vendas.',
     benefits: [
-      "Diagnóstico do funil atual",
-      "Identificação de gargalos e pontos de perda",
-      "Ajuste da qualificação e da passagem entre etapas",
-      "Follow-up mais eficiente",
-      "Métricas claras para acompanhar conversão"
+      'Mapeamento das etapas do funil atual',
+      'Diagnóstico de perda entre captação, atendimento e venda',
+      'Ajuste de critérios de qualificação',
+      'Melhoria do fluxo de atendimento e acompanhamento',
+      'Métricas claras para acompanhar avanço e conversão',
     ],
-    results: "Mais aproveitamento da demanda e menos lead perdido ao longo do funil."
+    results:
+      'Mais aproveitamento do lead gerado e uma operação mais consistente do primeiro contato ao fechamento.',
   },
   {
-    number: "03",
-    title: "Implementação Comercial",
-    description: "Estruturamos o comercial para sua operação vender com processo, não no improviso.",
-    items: ["Processo Comercial", "Scripts", "Rotina de Vendas", "Atendimento"],
+    number: '03',
+    title: 'Implementação comercial',
+    description:
+      'Estruturação de processo, rotina, abordagem e controle para operações que querem vender sem improviso.',
+    items: ['Processo Comercial', 'Scripts', 'Rotina', 'Atendimento'],
     icon: Zap,
-    fullDescription: "Lead bom em comercial bagunçado também vira desperdício. A Dual Leads organiza processo, rotina, abordagem e pipeline para sua equipe atender melhor, avançar com mais consistência e converter com mais controle.",
+    fullDescription:
+      "A D'Leads também atua na implementação comercial, criando base operacional para que a demanda gerada se transforme em receita. Isso inclui organização de pipeline, rotina, abordagem, priorização e disciplina de acompanhamento.",
     benefits: [
-      "Processo comercial estruturado",
-      "Scripts e abordagens mais eficientes",
-      "Rotina de atendimento e follow-up",
-      "Padronização da operação comercial",
-      "Mais clareza sobre pipeline e produtividade"
+      'Desenho ou refinamento do processo comercial',
+      'Padronização de scripts e abordagem',
+      'Rotina de atendimento e follow-up',
+      'Melhor leitura de produtividade comercial',
+      'Mais consistência na execução da equipe',
     ],
-    results: "Mais organização, mais eficiência e mais consistência nas vendas."
+    results:
+      'Comercial mais organizado, acompanhamento mais forte e aumento de previsibilidade no fechamento.',
   },
   {
-    number: "04",
-    title: "Dados, CRM e Automação",
-    description: "Implementamos CRM, dashboards e automações para sua empresa parar de operar no escuro.",
-    items: ["CRM", "Dashboards", "Tracking", "Automações"],
+    number: '04',
+    title: 'Automação, dados e tecnologia',
+    description:
+      'CRM, tracking, dashboards e automações para dar visibilidade operacional e acelerar decisões.',
+    items: ['CRM', 'Dashboards', 'Tracking', 'Automações'],
     icon: Settings,
-    fullDescription: "Se você não enxerga o funil, não sabe onde perde lead, onde trava conversão e onde desperdiça dinheiro. Estruturamos CRM, dashboards e automações para dar visibilidade real da operação e transformar dado em decisão prática.",
+    fullDescription:
+      "Para sustentar crescimento, a operação precisa de tecnologia e processos internos. Implementamos CRM, automações, integrações e leitura de performance para conectar marketing, mídia paga, comercial e gestão.",
     benefits: [
-      "CRM ajustado ao processo da operação",
-      "Dashboards com visão clara do funil",
-      "Automação de tarefas repetitivas",
-      "Integração entre ferramentas",
-      "Rastreamento da jornada do lead"
+      'Configuração ou ajuste de CRM conforme a operação',
+      'Dashboards para acompanhamento de marketing e vendas',
+      'Rastreamento da jornada do lead',
+      'Automações para tarefas repetitivas e resposta mais rápida',
+      'Integração entre ferramentas e áreas do negócio',
     ],
-    results: "Mais visibilidade, mais controle e mais decisão baseada em dado real."
+    results:
+      'Mais controle operacional, menos retrabalho e decisões mais rápidas com base em informação confiável.',
   },
 ];
 
 const problems = [
   {
     icon: TrendingUp,
-    title: "Lead que não compra",
-    description: "Volume alto, conversão baixa. Você atrai curiosos, não compradores."
+    title: 'Lead sem intenção de compra',
+    description:
+      'A empresa investe em tráfego, mas atrai volume sem qualidade e sente a conversão travada.',
   },
   {
     icon: Users,
-    title: "Comercial desorganizado",
-    description: "Sem processo, sem rotina, sem previsibilidade. Cada vendedor faz do seu jeito."
+    title: 'Marketing e comercial desconectados',
+    description:
+      'A passagem entre geração de demanda e fechamento é falha, o que aumenta perda e reduz previsibilidade.',
   },
   {
     icon: Database,
-    title: "Sem visão do funil",
-    description: "Você não sabe onde perde lead, onde trava e onde está o gargalo real."
+    title: 'Falta de visibilidade operacional',
+    description:
+      'Sem CRM bem estruturado, dashboards e tracking, fica difícil saber onde a operação perde resultado.',
   },
   {
     icon: BarChart3,
-    title: "Decisão no escuro",
-    description: "Sem dados confiáveis, toda decisão vira achismo. E achismo custa caro."
-  }
+    title: 'Decisão baseada em percepção',
+    description:
+      'Sem dados consistentes, a empresa otimiza pouco e toma decisões sem evidência clara de performance.',
+  },
 ];
 
 const testimonials = [
   {
-    name: "Carlos Mendes",
-    role: "CEO, TechSolutions",
-    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face",
-    text: "A Dual Leads transformou nossa operação comercial. Em 3 meses, dobramos a conversão e finalmente temos previsibilidade."
+    name: 'Carlos Mendes',
+    role: 'CEO, TechSolutions',
+    image:
+      'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face',
+    text: 'A operação ficou muito mais previsível. Saímos do improviso comercial para um processo com meta, acompanhamento e clareza.',
   },
   {
-    name: "Ana Paula Silva",
-    role: "Diretora Comercial, Innovare",
-    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=face",
-    text: "Paramos de desperdiçar lead. Hoje sabemos exatamente onde cada oportunidade está e por que converte ou não."
+    name: 'Ana Paula Silva',
+    role: 'Diretora Comercial, Innovare',
+    image:
+      'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=face',
+    text: "A D'Leads organizou marketing e vendas como uma mesma operação. Hoje entendemos onde o lead entra, avança e converte.",
   },
   {
-    name: "Roberto Almeida",
-    role: "Founder, StartupX",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face",
-    text: "O diagnóstico foi certeiro. Descobrimos que o problema não era lead, era processo. Hoje vendemos 3x mais com a mesma equipe."
-  }
+    name: 'Roberto Almeida',
+    role: 'Founder, StartupX',
+    image:
+      'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face',
+    text: 'O ganho não foi só em tráfego. Veio junto processo, leitura de dados e disciplina comercial para crescer com base mais sólida.',
+  },
 ];
 
 const stats = [
-  { value: "+150%", label: "Aumento médio em leads qualificados" },
-  { value: "3x", label: "Mais conversão no funil" },
-  { value: "-40%", label: "Redução no custo por aquisição" },
-  { value: "100%", label: "Visibilidade do funil" }
+  { value: '+150%', label: 'Ganho médio em volume qualificado' },
+  { value: '3x', label: 'Mais eficiência de conversão em operações estruturadas' },
+  { value: '-40%', label: 'Redução potencial no custo por aquisição' },
+  { value: '100%', label: 'Foco em leitura de funil e performance' },
 ];
 
-// ==================== COMPONENTS ====================
+const businessHighlights = [
+  {
+    icon: Building2,
+    title: "Quem é a D'Leads",
+    description:
+      "A D'Leads é uma operação brasileira especializada em marketing, mídia paga, aquisição, automação e crescimento comercial para empresas que precisam de mais controle e performance.",
+  },
+  {
+    icon: Settings,
+    title: 'Como atuamos',
+    description:
+      'Usamos ferramentas, processos internos, CRM, tracking, dashboards e rotinas de gestão para operar campanhas e organizar a jornada comercial com visão de negócio.',
+  },
+  {
+    icon: ShieldCheck,
+    title: 'Atuação legítima e autorizada',
+    description:
+      'A operação é profissional, voltada para negócios próprios e contas gerenciadas de forma autorizada, com foco em execução responsável e transparência.',
+  },
+];
 
-// Header Component
+const privacyItems = [
+  {
+    title: 'Dados que podem ser coletados',
+    text:
+      'Podemos receber dados enviados voluntariamente por e-mail, WhatsApp ou outros canais de contato, como nome, telefone, empresa, cargo, interesse comercial e contexto da demanda. Também podem existir dados técnicos básicos de navegação, como IP, tipo de dispositivo, navegador e páginas acessadas.',
+  },
+  {
+    title: 'Como esses dados são utilizados',
+    text:
+      'As informações são usadas para responder contatos, conduzir atendimento comercial, avaliar aderência de serviços, melhorar a experiência no site, organizar a operação de marketing e comunicação e acompanhar a performance das ações da empresa.',
+  },
+  {
+    title: 'Cookies, analytics e pixels',
+    text:
+      'Este site institucional pode utilizar cookies técnicos e ferramentas de mensuração para entender navegação, desempenho das páginas e efetividade de campanhas. Quando houver uso de analytics, pixels ou outras ferramentas de acompanhamento, eles serão empregados para análise agregada, otimização de mídia e melhoria da experiência.',
+  },
+  {
+    title: 'Proteção e tratamento das informações',
+    text:
+      'A D\'Leads adota medidas administrativas e tecnológicas compatíveis com o porte da operação para reduzir risco de acesso indevido, uso não autorizado, alteração ou perda de dados. O acesso às informações é restrito ao necessário para atendimento e operação.',
+  },
+  {
+    title: 'Contato sobre privacidade',
+    text:
+      "Solicitações relacionadas a dados, privacidade ou atualização de informações podem ser feitas pelo e-mail contato@dualeads.com. Mantemos esta política disponível para consulta pública e a atualizamos quando necessário.",
+  },
+];
+
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -157,16 +237,16 @@ const Header = () => {
 
   const navItems = [
     { label: 'Serviços', href: '#servicos' },
-    { label: 'Método', href: '#metodo' },
-    { label: 'Resultados', href: '#resultados' },
-    { label: 'Contato', href: '#contato' }
+    { label: 'About Us', href: '#about-us' },
+    { label: 'Privacy Policy', href: '#privacy-policy' },
+    { label: 'Contact', href: '#business-info' },
   ];
 
   return (
     <header className={`header ${isScrolled ? 'header-scrolled' : ''}`}>
       <div className="container header-container">
-        <a href="#" className="logo">
-          <img className="logo-image" src={logoTransparente} alt="Logo Dual Leads" />
+        <a href="#topo" className="logo" aria-label="Ir para o topo">
+          <img className="logo-image" src={logoTransparente} alt="Logo D'Leads" />
         </a>
 
         <nav className="nav-desktop">
@@ -181,9 +261,10 @@ const Header = () => {
           Falar com especialista
         </a>
 
-        <button 
+        <button
           className="mobile-menu-btn"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          aria-label="Abrir menu"
         >
           {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
@@ -191,23 +272,27 @@ const Header = () => {
 
       <AnimatePresence>
         {isMobileMenuOpen && (
-          <motion.div 
+          <motion.div
             className="mobile-menu"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
           >
             {navItems.map((item) => (
-              <a 
-                key={item.href} 
-                href={item.href} 
+              <a
+                key={item.href}
+                href={item.href}
                 className="mobile-nav-link"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 {item.label}
               </a>
             ))}
-            <a href="#contato" className="btn btn-primary mobile-cta">
+            <a
+              href="#contato"
+              className="btn btn-primary mobile-cta"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
               Falar com especialista
             </a>
           </motion.div>
@@ -217,18 +302,17 @@ const Header = () => {
   );
 };
 
-// Hero Section
 const Hero = () => {
   return (
-    <section className="hero">
+    <section className="hero" id="topo">
       <div className="hero-bg">
         <div className="hero-gradient-1"></div>
         <div className="hero-gradient-2"></div>
         <div className="hero-grid"></div>
       </div>
-      
+
       <div className="container hero-container">
-        <motion.div 
+        <motion.div
           className="hero-content"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -236,48 +320,61 @@ const Hero = () => {
         >
           <div className="hero-badge">
             <span className="badge-dot"></span>
-            Estrutura comercial que gera resultado
+            Operação profissional de marketing, tráfego e tecnologia
           </div>
-          
+
           <h1 className="hero-title">
-            Sua empresa não precisa de mais lead.
-            <span className="hero-title-highlight"> Precisa converter melhor.</span>
+            Marketing, mídia paga e comercial com
+            <span className="hero-title-highlight"> estrutura para crescer.</span>
           </h1>
-          
+
           <p className="hero-subtitle">
-            Estruturamos aquisição, funil e processo comercial para empresas que querem parar de desperdiçar oportunidade e começar a vender com consistência.
+            A D&apos;Leads opera aquisição, performance, automação e crescimento comercial
+            para negócios que precisam de previsibilidade, processo e leitura real de funil.
           </p>
-          
+
           <div className="hero-ctas">
             <a href="#contato" className="btn btn-primary btn-lg">
-              Quero um diagnóstico gratuito
+              Solicitar diagnóstico
               <ArrowRight size={20} />
             </a>
-            <a href="#metodo" className="btn btn-secondary btn-lg">
+            <a href="#about-us" className="btn btn-secondary btn-lg">
               <Play size={20} />
-              Ver como funciona
+              Conhecer a operação
             </a>
           </div>
 
           <div className="hero-proof">
             <div className="hero-avatars">
-              <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face" alt="" />
-              <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=40&h=40&fit=crop&crop=face" alt="" />
-              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop&crop=face" alt="" />
-              <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=40&h=40&fit=crop&crop=face" alt="" />
+              <img
+                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face"
+                alt=""
+              />
+              <img
+                src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=40&h=40&fit=crop&crop=face"
+                alt=""
+              />
+              <img
+                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop&crop=face"
+                alt=""
+              />
+              <img
+                src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=40&h=40&fit=crop&crop=face"
+                alt=""
+              />
             </div>
             <div className="hero-proof-text">
               <div className="hero-stars">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} size={16} fill="#FBBF24" color="#FBBF24" />
+                {[...Array(5)].map((_, index) => (
+                  <Star key={index} size={16} fill="#FBBF24" color="#FBBF24" />
                 ))}
               </div>
-              <span>+50 empresas já estruturaram suas vendas</span>
+              <span>Operação voltada para contas próprias e gerenciadas de forma autorizada</span>
             </div>
           </div>
         </motion.div>
 
-        <motion.div 
+        <motion.div
           className="hero-visual"
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -290,28 +387,28 @@ const Hero = () => {
                 <span></span>
                 <span></span>
               </div>
-              <span className="dashboard-title">Funil de Vendas</span>
+              <span className="dashboard-title">Operação de Performance</span>
             </div>
             <div className="dashboard-content">
               <div className="dashboard-stat">
-                <span className="stat-label">Leads Qualificados</span>
+                <span className="stat-label">Aquisição com intenção</span>
                 <span className="stat-value">+247%</span>
                 <div className="stat-bar">
-                  <div className="stat-bar-fill" style={{width: '85%'}}></div>
+                  <div className="stat-bar-fill" style={{ width: '85%' }}></div>
                 </div>
               </div>
               <div className="dashboard-stat">
-                <span className="stat-label">Taxa de Conversão</span>
+                <span className="stat-label">Taxa de avanço no funil</span>
                 <span className="stat-value">32.5%</span>
                 <div className="stat-bar">
-                  <div className="stat-bar-fill" style={{width: '65%'}}></div>
+                  <div className="stat-bar-fill" style={{ width: '65%' }}></div>
                 </div>
               </div>
               <div className="dashboard-stat">
-                <span className="stat-label">Custo por Lead</span>
+                <span className="stat-label">Eficiência de mídia</span>
                 <span className="stat-value green">-40%</span>
                 <div className="stat-bar">
-                  <div className="stat-bar-fill green" style={{width: '40%'}}></div>
+                  <div className="stat-bar-fill green" style={{ width: '40%' }}></div>
                 </div>
               </div>
             </div>
@@ -322,30 +419,29 @@ const Hero = () => {
   );
 };
 
-// Problems Section
 const Problems = () => {
   return (
     <section className="problems" id="problemas">
       <div className="container">
-        <motion.div 
+        <motion.div
           className="section-header"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <span className="section-tag">O problema</span>
-          <h2 className="section-title">
-            Reconhece algum desses sintomas?
-          </h2>
+          <span className="section-tag">Diagnóstico</span>
+          <h2 className="section-title">Sinais de que a operação precisa de estrutura</h2>
           <p className="section-subtitle">
-            Se sua operação comercial tem algum desses sinais, o problema não é falta de lead. É falta de estrutura.
+            A D&apos;Leads atua quando marketing, mídia paga e comercial precisam deixar de
+            operar de forma fragmentada e passar a trabalhar com processo, tecnologia e
+            acompanhamento.
           </p>
         </motion.div>
 
         <div className="problems-grid">
           {problems.map((problem, index) => (
             <motion.div
-              key={index}
+              key={problem.title}
               className="problem-card"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -365,40 +461,39 @@ const Problems = () => {
   );
 };
 
-// Service Modal Component
-const ServiceModal = ({ service, isOpen, onClose }) => {
+const ServiceModal = ({ isOpen, onClose, service }) => {
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
+    document.body.style.overflow = isOpen ? 'hidden' : 'unset';
     return () => {
       document.body.style.overflow = 'unset';
     };
   }, [isOpen]);
 
+  if (!service) {
+    return null;
+  }
+
   return (
     <AnimatePresence>
       {isOpen && (
-        <motion.div 
+        <motion.div
           className="modal-overlay"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           onClick={onClose}
         >
-          <motion.div 
+          <motion.div
             className="modal-content"
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            onClick={(e) => e.stopPropagation()}
+            onClick={(event) => event.stopPropagation()}
           >
-            <button className="modal-close" onClick={onClose}>
+            <button className="modal-close" onClick={onClose} aria-label="Fechar modal">
               <X size={24} />
             </button>
-            
+
             <div className="modal-header">
               <div className="modal-icon">
                 <service.icon size={32} />
@@ -412,10 +507,10 @@ const ServiceModal = ({ service, isOpen, onClose }) => {
             <p className="modal-description">{service.fullDescription}</p>
 
             <div className="modal-benefits">
-              <h4>O que entregamos:</h4>
+              <h4>O que entregamos</h4>
               <ul>
-                {service.benefits.map((benefit, index) => (
-                  <li key={index}>
+                {service.benefits.map((benefit) => (
+                  <li key={benefit}>
                     <Check size={18} className="benefit-check" />
                     {benefit}
                   </li>
@@ -424,12 +519,12 @@ const ServiceModal = ({ service, isOpen, onClose }) => {
             </div>
 
             <div className="modal-results">
-              <h4>Resultado:</h4>
+              <h4>Resultado esperado</h4>
               <p>{service.results}</p>
             </div>
 
             <a href="#contato" className="btn btn-primary btn-lg modal-cta" onClick={onClose}>
-              Quero esse serviço
+              Falar com a D&apos;Leads
               <ArrowRight size={20} />
             </a>
           </motion.div>
@@ -439,32 +534,31 @@ const ServiceModal = ({ service, isOpen, onClose }) => {
   );
 };
 
-// Services Section
 const Services = () => {
   const [selectedService, setSelectedService] = useState(null);
 
   return (
     <section className="services" id="servicos">
       <div className="container">
-        <motion.div 
+        <motion.div
           className="section-header"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <span className="section-tag">Nossos serviços</span>
-          <h2 className="section-title">
-            Estrutura completa para sua operação vender mais
-          </h2>
+          <span className="section-tag">Serviços</span>
+          <h2 className="section-title">Marketing, mídia paga e operação comercial integrados</h2>
           <p className="section-subtitle">
-            Da geração de demanda até o fechamento. Atuamos em cada etapa do funil para eliminar gargalos e aumentar conversão.
+            A empresa atua com implementação de marketing, gestão de mídia paga, organização
+            de aquisição, automação e estrutura comercial para sustentar crescimento com mais
+            consistência.
           </p>
         </motion.div>
 
         <div className="services-grid">
           {services.map((service, index) => (
             <motion.div
-              key={index}
+              key={service.title}
               className="service-card"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -477,20 +571,19 @@ const Services = () => {
                   <service.icon size={24} />
                 </div>
               </div>
-              
+
               <h3 className="service-title">{service.title}</h3>
               <p className="service-description">{service.description}</p>
-              
+
               <div className="service-items">
-                {service.items.map((item, i) => (
-                  <span key={i} className="service-item">{item}</span>
+                {service.items.map((item) => (
+                  <span key={item} className="service-item">
+                    {item}
+                  </span>
                 ))}
               </div>
 
-              <button 
-                className="service-link"
-                onClick={() => setSelectedService(service)}
-              >
+              <button className="service-link" onClick={() => setSelectedService(service)}>
                 Saiba mais <ChevronRight size={16} />
               </button>
             </motion.div>
@@ -498,7 +591,7 @@ const Services = () => {
         </div>
       </div>
 
-      <ServiceModal 
+      <ServiceModal
         service={selectedService}
         isOpen={selectedService !== null}
         onClose={() => setSelectedService(null)}
@@ -507,53 +600,55 @@ const Services = () => {
   );
 };
 
-// Method Section
 const Method = () => {
   const steps = [
     {
-      number: "01",
-      title: "Diagnóstico",
-      description: "Analisamos sua operação atual, identificamos gargalos e mapeamos onde você está perdendo oportunidade."
+      number: '01',
+      title: 'Diagnóstico operacional',
+      description:
+        'Analisamos aquisição, estrutura comercial, dados e tecnologia para entender onde a operação perde eficiência.',
     },
     {
-      number: "02",
-      title: "Estratégia",
-      description: "Desenhamos o plano de ação com prioridades claras para destravar sua operação comercial."
+      number: '02',
+      title: 'Desenho da estratégia',
+      description:
+        'Definimos prioridades, metas, estrutura de funil, indicadores e plano de implementação alinhado ao negócio.',
     },
     {
-      number: "03",
-      title: "Implementação",
-      description: "Colocamos a estrutura para rodar: funil, processo, ferramentas e métricas."
+      number: '03',
+      title: 'Implementação',
+      description:
+        'Executamos ajustes de campanhas, CRM, dashboards, processo comercial, automações e rotina de acompanhamento.',
     },
     {
-      number: "04",
-      title: "Otimização",
-      description: "Acompanhamos os resultados e ajustamos continuamente para melhorar a conversão."
-    }
+      number: '04',
+      title: 'Otimização contínua',
+      description:
+        'Acompanhamos performance, leitura de dados e evolução da operação para sustentar crescimento com consistência.',
+    },
   ];
 
   return (
     <section className="method" id="metodo">
       <div className="container">
-        <motion.div 
+        <motion.div
           className="section-header"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <span className="section-tag">Nosso método</span>
-          <h2 className="section-title">
-            Como transformamos sua operação
-          </h2>
+          <span className="section-tag">Método</span>
+          <h2 className="section-title">Estrutura para crescer com mais previsibilidade</h2>
           <p className="section-subtitle">
-            Um processo estruturado para sair do caos comercial e chegar em vendas consistentes.
+            O foco da D&apos;Leads é transformar operação dispersa em um sistema comercial e
+            de marketing mais claro, mensurável e confiável.
           </p>
         </motion.div>
 
         <div className="method-steps">
           {steps.map((step, index) => (
             <motion.div
-              key={index}
+              key={step.number}
               className="method-step"
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -574,7 +669,6 @@ const Method = () => {
   );
 };
 
-// Stats Section
 const Stats = () => {
   return (
     <section className="stats" id="resultados">
@@ -582,7 +676,7 @@ const Stats = () => {
         <div className="stats-grid">
           {stats.map((stat, index) => (
             <motion.div
-              key={index}
+              key={stat.label}
               className="stat-card"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -599,27 +693,24 @@ const Stats = () => {
   );
 };
 
-// Testimonials Section
 const Testimonials = () => {
   return (
     <section className="testimonials">
       <div className="container">
-        <motion.div 
+        <motion.div
           className="section-header"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <span className="section-tag">Depoimentos</span>
-          <h2 className="section-title">
-            Quem já estruturou com a Dual Leads
-          </h2>
+          <span className="section-tag">Percepção de valor</span>
+          <h2 className="section-title">Estrutura que melhora leitura, controle e conversão</h2>
         </motion.div>
 
         <div className="testimonials-grid">
           {testimonials.map((testimonial, index) => (
             <motion.div
-              key={index}
+              key={testimonial.name}
               className="testimonial-card"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -643,26 +734,231 @@ const Testimonials = () => {
   );
 };
 
-// CTA Section
+const AboutUs = () => {
+  return (
+    <section className="compliance-section" id="about-us">
+      <div className="container">
+        <motion.div
+          className="section-header"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+        >
+          <span className="section-tag">About Us</span>
+          <h2 className="section-title">Uma operação real, profissional e verificável</h2>
+          <p className="section-subtitle">
+            A D&apos;Leads atua com marketing, mídia paga, aquisição, automação e growth
+            comercial para negócios que precisam de execução responsável, processo interno e
+            acompanhamento de performance.
+          </p>
+        </motion.div>
+
+        <div className="compliance-grid">
+          {businessHighlights.map((item, index) => (
+            <motion.div
+              key={item.title}
+              className="compliance-card"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
+            >
+              <div className="compliance-icon">
+                <item.icon size={24} />
+              </div>
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
+            </motion.div>
+          ))}
+        </div>
+
+        <motion.div
+          className="institutional-panel"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+        >
+          <div className="institutional-copy">
+            <span className="institutional-label">Posicionamento institucional</span>
+            <p>
+              A D&apos;Leads opera campanhas, processos internos de marketing e rotinas de
+              gestão comercial com suporte de ferramentas, CRM, automações e leitura de
+              desempenho. A empresa presta serviços para negócios próprios e para contas
+              gerenciadas de forma autorizada, mantendo foco em performance, transparência e
+              legitimidade operacional.
+            </p>
+          </div>
+          <div className="institutional-badges">
+            <div className="institutional-badge">
+              <CheckCircle2 size={18} />
+              Marketing e mídia paga
+            </div>
+            <div className="institutional-badge">
+              <CheckCircle2 size={18} />
+              Aquisição e performance
+            </div>
+            <div className="institutional-badge">
+              <CheckCircle2 size={18} />
+              Automação e CRM
+            </div>
+            <div className="institutional-badge">
+              <CheckCircle2 size={18} />
+              Implementação comercial
+            </div>
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  );
+};
+
+const BusinessInfo = () => {
+  return (
+    <section className="business-info" id="business-info">
+      <div className="container">
+        <motion.div
+          className="section-header"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+        >
+          <span className="section-tag">Contact</span>
+          <h2 className="section-title">Informações comerciais e endereço físico</h2>
+          <p className="section-subtitle">
+            Esta área reúne os dados institucionais e de contato da empresa de forma clara,
+            acessível e verificável.
+          </p>
+        </motion.div>
+
+        <div className="business-grid">
+          <motion.div
+            className="business-card business-card-primary"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <h3>{COMPANY.name}</h3>
+            <p className="business-cnpj">CNPJ: {COMPANY.cnpj}</p>
+            <div className="business-list">
+              <div className="business-item">
+                <MapPin size={20} />
+                <span>{COMPANY.address}</span>
+              </div>
+              <div className="business-item">
+                <Mail size={20} />
+                <a href={`mailto:${COMPANY.email}`}>{COMPANY.email}</a>
+              </div>
+              <div className="business-item">
+                <MessageCircle size={20} />
+                <a
+                  href={`https://wa.me/${COMPANY.whatsapp}?text=${encodeURIComponent(
+                    COMPANY.whatsappMessage
+                  )}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  WhatsApp comercial
+                </a>
+              </div>
+            </div>
+          </motion.div>
+
+          <motion.div
+            className="business-card"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+          >
+            <h3>Business Information</h3>
+            <p>
+              A empresa opera a partir de endereço físico real em Brasilia - DF, Brasil, e
+              mantém canal público de contato por e-mail e WhatsApp para demandas comerciais
+              e institucionais.
+            </p>
+            <ul className="business-checks">
+              <li>
+                <CheckCircle2 size={18} />
+                Endereço comercial visível no site e no footer
+              </li>
+              <li>
+                <CheckCircle2 size={18} />
+                E-mail institucional público
+              </li>
+              <li>
+                <CheckCircle2 size={18} />
+                Identificação empresarial com CNPJ
+              </li>
+            </ul>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+const PrivacyPolicy = () => {
+  return (
+    <section className="compliance-section compliance-section-alt" id="privacy-policy">
+      <div className="container">
+        <motion.div
+          className="section-header"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+        >
+          <span className="section-tag">Privacy Policy</span>
+          <h2 className="section-title">Política de privacidade clara e acessível</h2>
+          <p className="section-subtitle">
+            Esta política resume como a D&apos;Leads pode coletar, utilizar, proteger e
+            tratar informações relacionadas à navegação e ao contato comercial em seu site
+            institucional.
+          </p>
+        </motion.div>
+
+        <div className="privacy-list">
+          {privacyItems.map((item, index) => (
+            <motion.article
+              key={item.title}
+              className="privacy-card"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.06 }}
+            >
+              <div className="privacy-card-header">
+                <ShieldCheck size={18} />
+                <h3>{item.title}</h3>
+              </div>
+              <p>{item.text}</p>
+            </motion.article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
 const CTA = () => {
   return (
     <section className="cta" id="contato">
       <div className="container">
-        <motion.div 
+        <motion.div
           className="cta-content"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <h2 className="cta-title">
-            Pronto para parar de desperdiçar oportunidade?
-          </h2>
+          <h2 className="cta-title">Quer estruturar aquisição, marketing e comercial?</h2>
           <p className="cta-subtitle">
-            Solicite um diagnóstico gratuito e descubra onde sua operação está travando.
+            Fale com a D&apos;Leads para entender como organizar mídia paga, automação,
+            processo e acompanhamento de performance no seu negócio.
           </p>
           <div className="cta-buttons">
-            <a 
-              href="https://wa.me/5511999999999?text=Olá! Quero um diagnóstico gratuito da minha operação comercial." 
+            <a
+              href={`https://wa.me/${COMPANY.whatsapp}?text=${encodeURIComponent(
+                COMPANY.whatsappMessage
+              )}`}
               target="_blank"
               rel="noopener noreferrer"
               className="btn btn-primary btn-lg"
@@ -670,9 +966,13 @@ const CTA = () => {
               <MessageCircle size={20} />
               Falar no WhatsApp
             </a>
+            <a href={`mailto:${COMPANY.email}`} className="btn btn-secondary btn-lg">
+              <Mail size={20} />
+              Enviar e-mail
+            </a>
           </div>
           <p className="cta-note">
-            Diagnóstico gratuito • Sem compromisso • Resposta em até 24h
+            Atendimento institucional • Resposta comercial • Operação baseada em performance
           </p>
         </motion.div>
       </div>
@@ -680,19 +980,25 @@ const CTA = () => {
   );
 };
 
-// Footer
 const Footer = () => {
   return (
     <footer className="footer">
       <div className="container">
         <div className="footer-content">
           <div className="footer-brand">
-            <a href="#" className="logo">
-              <img className="logo-image" src={logoTransparente} alt="Logo Dual Leads" />
+            <a href="#topo" className="logo" aria-label="Ir para o topo">
+              <img className="logo-image" src={logoTransparente} alt="Logo D'Leads" />
             </a>
             <p className="footer-description">
-              Estruturamos aquisição, funil e processo comercial para empresas que querem vender mais e melhor.
+              Operação de marketing, mídia paga, automação e crescimento comercial para
+              empresas que precisam de estrutura, performance e leitura clara de funil.
             </p>
+            <div className="footer-legal">
+              <p>{COMPANY.name}</p>
+              <p>CNPJ: {COMPANY.cnpj}</p>
+              <p>{COMPANY.city}</p>
+              <a href={`mailto:${COMPANY.email}`}>{COMPANY.email}</a>
+            </div>
           </div>
 
           <div className="footer-links">
@@ -704,29 +1010,38 @@ const Footer = () => {
               <a href="#contato">Contato</a>
             </div>
             <div className="footer-column">
-              <h4>Serviços</h4>
-              <a href="#servicos">Geração de Demanda</a>
-              <a href="#servicos">Funil e Conversão</a>
-              <a href="#servicos">Implementação Comercial</a>
-              <a href="#servicos">Dados e Automação</a>
+              <h4>Compliance</h4>
+              <a href="#about-us">About Us</a>
+              <a href="#privacy-policy">Privacy Policy</a>
+              <a href="#business-info">Contact / Address</a>
             </div>
             <div className="footer-column">
-              <h4>Contato</h4>
-              <a href="mailto:contato@dualleads.com.br">contato@dualleads.com.br</a>
-              <a href="https://wa.me/556181963957" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+              <h4>Business Address</h4>
+              <p className="footer-address">{COMPANY.address}</p>
+              <a
+                href={`https://wa.me/${COMPANY.whatsapp}?text=${encodeURIComponent(
+                  COMPANY.whatsappMessage
+                )}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                WhatsApp comercial
+              </a>
             </div>
           </div>
         </div>
 
         <div className="footer-bottom">
-          <p>&copy; 2024 Dual Leads. Todos os direitos reservados.</p>
+          <p>
+            © 2026 {COMPANY.name}. Todos os direitos reservados. Informações institucionais,
+            endereço comercial e política de privacidade disponíveis nesta página.
+          </p>
         </div>
       </div>
     </footer>
   );
 };
 
-// ==================== MAIN APP ====================
 function App() {
   return (
     <div className="app">
@@ -738,6 +1053,9 @@ function App() {
         <Method />
         <Stats />
         <Testimonials />
+        <AboutUs />
+        <BusinessInfo />
+        <PrivacyPolicy />
         <CTA />
       </main>
       <Footer />

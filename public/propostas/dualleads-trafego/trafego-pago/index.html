@@ -462,21 +462,20 @@ tbody td:last-child { text-align: right; }
 .card-lista { list-style: none; display: flex; flex-direction: column; gap: 13px; }
 
 .card-lista li {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
+  position: relative;
+  padding-left: 30px;
   font-size: 15px;
   color: #64748B;
-  line-height: 1.65;
+  line-height: 1.7;
 }
 
 .card-lista li::before {
   content: "✓";
+  position: absolute;
+  top: 3px;
+  left: 0;
   color: #4a7aaa;
   font-weight: 700;
-  font-size: 14px;
-  flex-shrink: 0;
-  margin-top: 2px;
   width: 18px;
   height: 18px;
   background: #f0f4f8;
@@ -487,7 +486,11 @@ tbody td:last-child { text-align: right; }
   font-size: 11px;
 }
 
-.card-lista li strong { color: #0d1117; font-weight: 600; }
+.card-lista li strong { color: #0d1117; font-weight: 700; margin-right: 4px; }
+
+.card-lista li {
+  display: block;
+}
 
 /* ========= SETUP ========= */
 .setup-grid {

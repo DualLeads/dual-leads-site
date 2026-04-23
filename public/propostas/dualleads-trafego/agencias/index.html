@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Proposta Agências · D'Leads</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  --azul-escuro: #0d1117;
+  --azul-medio: #1a2433;
+  --azul-claro: #2a3a52;
+  --azul-brilho: #4a7aaa;
+  --prata-claro: #c8bfa8;
+  --prata-fundo: #F1F5F9;
+  --branco: #FFFFFF;
+  --linha: #E2E8F0;
+  --destaque: #f0f4f8;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: #fff;
+  color: #0d1117;
+  font-size: 17px;
+  line-height: 1.8;
+}
+
+.nav-flutuante {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  background: rgba(13,17,23,0.97);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
+  transform: translateY(-100%);
+  transition: transform 0.3s ease;
+}
+
+.nav-flutuante.visivel { transform: translateY(0); }
+.nav-logo { font-family: 'Playfair Display', serif; font-size: 15px; letter-spacing: 2px; color: #c8bfa8; }
+.nav-links { display: flex; gap: 6px; }
+.nav-link { color: #94A3B8; text-decoration: none; font-size: 13px; font-weight: 500; padding: 6px 14px; border-radius: 6px; transition: all 0.2s; white-space: nowrap; }
+.nav-link:hover, .nav-link.ativo { color: #c8bfa8; background: rgba(255,255,255,0.07); }
+
+.capa {
+  background: linear-gradient(145deg, #0d1117 0%, #1a2433 60%, #1a2e45 100%);
+  color: #fff;
+  padding: 100px 80px 80px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+}
+
+.capa::before {
+  content: '';
+  position: absolute;
+  top: -200px; right: -200px;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(74,122,170,0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.capa-logo { font-family: 'Playfair Display', serif; font-size: 16px; letter-spacing: 3px; color: #c8bfa8; position: relative; z-index: 1; }
+.capa-acento { width: 52px; height: 5px; background: linear-gradient(90deg, #4a7aaa, #6a9ac0); border-radius: 3px; margin: 56px 0 32px; position: relative; z-index: 1; }
+
+.capa-titulo {
+  font-family: 'Playfair Display', serif;
+  font-size: 72px;
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -2px;
+  margin-bottom: 32px;
+  color: #e8e0d0;
+  position: relative;
+  z-index: 1;
+}
+
+.capa-titulo em { font-style: normal; color: #4a7aaa; }
+.capa-subtitulo { font-size: 19px; color: #94A3B8; max-width: 540px; line-height: 1.8; margin-bottom: 48px; position: relative; z-index: 1; }
+
+.capa-pilares {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 64px;
+  position: relative;
+  z-index: 1;
+}
+
+.capa-pilar {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 14px;
+  padding: 28px;
+  transition: all 0.25s;
+}
+
+.capa-pilar:hover {
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(74,122,170,0.3);
+}
+
+.pilar-icone { font-size: 26px; margin-bottom: 12px; }
+.pilar-titulo { font-size: 15px; font-weight: 700; color: #c8bfa8; margin-bottom: 8px; }
+.pilar-desc { font-size: 14px; color: #94A3B8; line-height: 1.65; }
+
+.capa-rodape { display: flex; justify-content: space-between; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 28px; font-size: 13px; color: #64748B; position: relative; z-index: 1; }
+
+.scroll-hint { display: flex; align-items: center; gap: 8px; color: #64748B; font-size: 13px; cursor: pointer; transition: color 0.2s; text-decoration: none; }
+.scroll-hint:hover { color: #94A3B8; }
+.scroll-hint-arrow { width: 28px; height: 28px; border: 1px solid rgba(255,255,255,0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; animation: bounce 2s infinite; }
+
+@keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(4px); } }
+
+.pagina { padding: 80px 80px; max-width: 1060px; margin: 0 auto; }
+
+.pagina-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 64px; padding-bottom: 24px; border-bottom: 2px solid #E2E8F0; }
+.pagina-marca { font-family: 'Playfair Display', serif; font-size: 18px; letter-spacing: 2px; color: #2a3a52; }
+
+.secao { margin-bottom: 72px; }
+
+.secao-label { font-size: 12px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: #4a7aaa; margin-bottom: 14px; }
+
+.secao-titulo {
+  font-family: 'Playfair Display', serif;
+  font-size: 36px;
+  font-weight: 700;
+  color: #0d1117;
+  line-height: 1.2;
+  margin-bottom: 18px;
+}
+
+.secao-subtitulo { font-size: 17px; color: #64748B; max-width: 700px; line-height: 1.85; margin-bottom: 36px; }
+
+/* TABELA VOLUME — label destacado */
+.tabela-titulo-bloco {
+  margin-bottom: 24px;
+}
+
+.tabela-titulo-bloco .secao-label {
+  font-size: 13px;
+  letter-spacing: 2px;
+  background: #0d1117;
+  color: #c8bfa8;
+  display: inline-block;
+  padding: 6px 16px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+
+.tabela-titulo-bloco h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: #0d1117;
+  margin-bottom: 8px;
+}
+
+.tabela-titulo-bloco p {
+  font-size: 16px;
+  color: #64748B;
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+.tabela-wrap { border-radius: 14px; border: 1px solid #E2E8F0; overflow: hidden; margin-bottom: 20px; box-shadow: 0 4px 24px rgba(0,0,0,0.05); }
+
+table { width: 100%; border-collapse: collapse; }
+thead tr { background: #0d1117; }
+thead th { color: #c8bfa8; padding: 20px 24px; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; text-align: left; }
+thead th:last-child { text-align: right; }
+tbody tr { border-bottom: 1px solid #E2E8F0; transition: background 0.15s; }
+tbody tr:last-child { border-bottom: none; }
+tbody tr:nth-child(even) { background: #F8FAFC; }
+tbody tr:hover { background: #f0f4f8; }
+tbody td { padding: 22px 24px; font-size: 16px; color: #0d1117; vertical-align: top; }
+tbody td:last-child { text-align: right; }
+
+.faixa-label { font-weight: 700; font-size: 18px; display: block; margin-bottom: 7px; }
+
+.volume-badge { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 3px 10px; border-radius: 4px; }
+.badge-entry { background: #f0f4f8; color: #2a3a52; border: 1px solid #c8d8e8; }
+.badge-mid   { background: #F0FDF4; color: #166534; border: 1px solid #BBF7D0; }
+.badge-scale { background: #FFF7ED; color: #9A3412; border: 1px solid #FED7AA; }
+.badge-full  { background: #1a2433; color: #c8bfa8; border: 1px solid #2a3a52; }
+.badge-pro   { background: #0d1117; color: #c8bfa8; border: 1px solid #1a2433; }
+
+.fee-valor { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; color: #0d1117; display: block; }
+.fee-sub { font-size: 14px; color: #64748B; display: block; margin-top: 5px; }
+
+.nota-box { background: #f0f4f8; border: 1px solid #c8d8e8; border-left: 4px solid #4a7aaa; border-radius: 10px; padding: 24px 28px; margin-top: 24px; font-size: 16px; color: #2a3a52; line-height: 1.85; }
+.nota-box strong { display: block; font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px; color: #4a7aaa; }
+
+.nota-verde { background: #F0FDF4; border-color: #BBF7D0; border-left-color: #16A34A; color: #166534; }
+.nota-verde strong { color: #15803D; }
+
+.escopo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 24px; }
+
+.escopo-card {
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 16px;
+  padding: 32px;
+  transition: all 0.25s;
+  position: relative;
+  overflow: hidden;
+}
+
+.escopo-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #4a7aaa, #6a9ac0);
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+
+.escopo-card:hover { border-color: #c8d8e8; box-shadow: 0 12px 40px rgba(74,122,170,0.1); transform: translateY(-3px); }
+.escopo-card:hover::before { opacity: 1; }
+
+.escopo-titulo { font-size: 18px; font-weight: 700; color: #0d1117; margin-bottom: 6px; }
+.escopo-preco { font-size: 14px; color: #4a7aaa; font-weight: 600; margin-bottom: 20px; padding-bottom: 18px; border-bottom: 1px solid #E2E8F0; }
+
+.escopo-lista { list-style: none; display: flex; flex-direction: column; gap: 13px; }
+.escopo-lista li { display: flex; align-items: flex-start; gap: 12px; font-size: 15px; color: #64748B; line-height: 1.65; }
+.escopo-lista li::before { content: "→"; color: #4a7aaa; font-weight: 700; font-size: 14px; flex-shrink: 0; margin-top: 2px; }
+.escopo-lista li strong { color: #0d1117; font-weight: 600; }
+
+.faixa-preco { font-weight: 700; color: #2a3a52; white-space: nowrap; font-size: 16px; }
+
+.secao-divisor { display: flex; align-items: center; gap: 20px; margin: 64px 0 56px; }
+.secao-divisor-linha { flex: 1; height: 1px; background: #E2E8F0; }
+.secao-divisor-icone { font-size: 18px; color: #94A3B8; }
+
+.rodape-pagina { margin-top: 64px; padding-top: 24px; border-top: 1px solid #E2E8F0; display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: #94A3B8; }
+.rodape-logo { font-family: 'Playfair Display', serif; font-size: 15px; color: #2a3a52; letter-spacing: 1px; }
+
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.reveal.visivel { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 900px) {
+  .capa { padding: 80px 32px 60px; }
+  .capa-titulo { font-size: 52px; }
+  .capa-pilares { grid-template-columns: 1fr; }
+  .pagina { padding: 48px 32px; }
+  .escopo-grid { grid-template-columns: 1fr; }
+  .nav-links { display: none; }
+  .secao-titulo { font-size: 28px; }
+}
+
+@media (max-width: 600px) {
+  .capa { padding: 60px 20px 48px; }
+  .capa-titulo { font-size: 40px; letter-spacing: -1px; }
+  .capa-subtitulo { font-size: 16px; }
+  .pagina { padding: 36px 20px; }
+  .pagina-header { flex-direction: column; align-items: flex-start; gap: 6px; }
+  .nav-flutuante { padding: 0 20px; }
+  thead th { padding: 14px 14px; font-size: 10px; }
+  tbody td { padding: 16px 14px; font-size: 14px; }
+  .fee-valor { font-size: 22px; }
+  .rodape-pagina { flex-direction: column; gap: 8px; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav-flutuante" id="navFlutuante">
+  <span class="nav-logo">D'LEADS</span>
+  <div class="nav-links">
+    <a href="#como-funciona" class="nav-link">Como funciona</a>
+    <a href="#tabela-trafego" class="nav-link">Tabela Tráfego</a>
+    <a href="#tabela-funil" class="nav-link">Tabela Funil</a>
+    <a href="#escopo" class="nav-link">Escopo</a>
+    <a href="#adicionais" class="nav-link">Adicionais</a>
+  </div>
+</nav>
+
+<div class="capa" id="topo">
+  <div class="capa-logo">D'LEADS · Parceria Comercial</div>
+  <div>
+    <div class="capa-acento"></div>
+    <h1 class="capa-titulo">Operação.<br>Escala.<br><em>Margem.</em></h1>
+    <p class="capa-subtitulo">Parceria operacional para agências que querem entregar gestão de tráfego e funil com qualidade — sem montar equipe interna do zero e sem abrir mão da margem.</p>
+    <div class="capa-pilares">
+      <div class="capa-pilar">
+        <div class="pilar-icone">🔧</div>
+        <div class="pilar-titulo">Operação White-Label</div>
+        <div class="pilar-desc">Você é o rosto da operação. A D'Leads é o motor — invisível para o cliente final.</div>
+      </div>
+      <div class="capa-pilar">
+        <div class="pilar-icone">📊</div>
+        <div class="pilar-titulo">Relatório Semanal</div>
+        <div class="pilar-desc">Entregamos relatório estruturado pronto para você repassar com a sua marca.</div>
+      </div>
+      <div class="capa-pilar">
+        <div class="pilar-icone">📉</div>
+        <div class="pilar-titulo">Custo por Volume</div>
+        <div class="pilar-desc">Quanto mais clientes, menor o valor unitário. Escala inteligente para os dois lados.</div>
+      </div>
+    </div>
+  </div>
+  <div class="capa-rodape">
+    <span>D'LEADS · Gestão de Tráfego & Funis</span>
+    <a href="#como-funciona" class="scroll-hint">Ver proposta <span class="scroll-hint-arrow">↓</span></a>
+  </div>
+</div>
+
+<div class="pagina">
+  <div class="pagina-header">
+    <span class="pagina-marca">D'LEADS</span>
+  </div>
+
+  <!-- COMO FUNCIONA -->
+  <div class="secao reveal" id="como-funciona">
+    <div class="secao-label">Como funciona a parceria</div>
+    <h2 class="secao-titulo">Você vende. Nós operamos.<br>Sua margem, nossa responsabilidade.</h2>
+    <p class="secao-subtitulo">A D'Leads atua como parceiro operacional invisível da sua agência. Você mantém o relacionamento comercial, a conta e a margem. A gente entrega a gestão técnica com padrão, relatório semanal e suporte direto ao seu ponto de contato interno — sem aparecer para o cliente final. A comunicação com o cliente é sua. A D'Leads só entra nos assuntos diretamente relacionados à operação de tráfego.</p>
+    <div class="nota-verde nota-box">
+      <strong>Avaliação Estratégica</strong>
+      Os valores desta proposta foram calibrados para abertura de mercado e validação do modelo de parceria. Para volumes acima de 12 clientes, o valor unitário cai significativamente — mantendo eficiência operacional e margem para os dois lados.
+    </div>
+  </div>
+
+  <div class="secao-divisor">
+    <div class="secao-divisor-linha"></div>
+    <div class="secao-divisor-icone">◆</div>
+    <div class="secao-divisor-linha"></div>
+  </div>
+
+  <!-- TABELA 1 -->
+  <div class="secao reveal" id="tabela-trafego">
+    <div class="tabela-titulo-bloco">
+      <div class="secao-label">Tabela 1 · Tráfego Pago por Cliente</div>
+      <h3>Custo por cliente · Gestão de Tráfego</h3>
+      <p>Valores por cliente gerenciado. Você define o que cobra do seu cliente final. Aqui você vê o custo da operação.</p>
+    </div>
+    <div class="tabela-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Volume de Clientes</th>
+            <th>Valor por Cliente / mês</th>
+            <th style="text-align:right">Total Estimado / mês</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="faixa-label">1 a 2 clientes</span><span class="volume-badge badge-entry">Validação</span></td>
+            <td><span class="fee-valor">R$ 800</span><span class="fee-sub">por cliente</span></td>
+            <td style="text-align:right"><span class="fee-valor">R$ 800 – 1.600</span></td>
+          </tr>
+          <tr>
+            <td><span class="faixa-label">3 a 6 clientes</span><span class="volume-badge badge-mid">Crescimento</span></td>
+            <td><span class="fee-valor">R$ 700</span><span class="fee-sub">por cliente</span></td>
+            <td style="text-align:right"><span class="fee-valor">R$ 2.100 – 4.200</span></td>
+          </tr>
+          <tr>
+            <td><span class="faixa-label">7 a 12 clientes</span><span class="volume-badge badge-scale">Escala</span></td>
+            <td><span class="fee-valor">R$ 630</span><span class="fee-sub">por cliente</span></td>
+            <td style="text-align:right"><span class="fee-valor">R$ 4.410 – 7.560</span></td>
+          </tr>
+          <tr>
+            <td><span class="faixa-label">13 a 20 clientes</span><span class="volume-badge badge-full">Volume</span></td>
+            <td><span class="fee-valor">R$ 580</span><span class="fee-sub">por cliente</span></td>
+            <td style="text-align:right"><span class="fee-valor">R$ 7.540 – 11.600</span></td>
+          </tr>
+          <tr>
+            <td><span class="faixa-label">21 a 30 clientes</span><span class="volume-badge badge-pro">Parceria Estratégica</span></td>
+            <td><span class="fee-valor">R$ 530</span><span class="fee-sub">por cliente</span></td>
+            <td style="text-align:right"><span class="fee-valor">R$ 11.130 – 15.900</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="secao-divisor">
+    <div class="secao-divisor-linha"></div>
+    <div class="secao-divisor-icone">◆</div>
+    <div class="secao-divisor-linha"></div>
+  </div>
+
+  <!-- TABELA 2 -->
+  <div class="secao reveal" id="tabela-funil">
+    <div class="tabela-titulo-bloco">
+      <div class="secao-label">Tabela 2 · Tráfego + Funil por Cliente</div>
+      <h3>Custo por cliente · Tráfego + Estrutura de Funil</h3>
+      <p>Para agências que querem entregar mais do que tráfego — e agregar valor real com captação, qualificação e funil mantido mensalmente.</p>
+    </div>
+    <div class="tabela-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Volume de Clientes</th>
+            <th>Valor por Cliente / mês</th>
+            <th style="text-align:right">Total Estimado / mês</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="faixa-label">1 a 2 clientes</span><span class="volume-badge badge-entry">Validação</span></td>
+            <td><span class="fee-valor">R$ 1.300</span><span class="fee-sub">por cliente</span></td>
+            <td style="text-align:right"><span class="fee-valor">R$ 1.300 – 2.600</span></td>
+          </tr>
+          <tr>
+            <td><span class="faixa-label">3 a 6 clientes</span><span class="volume-badge badge-mid">Crescimento</span></td>
+            <td><span class="fee-valor">R$ 1.200</span><span class="fee-sub">por cliente</span></td>
+            <td style="text-align:right"><span class="fee-valor">R$ 3.600 – 7.200</span></td>
+          </tr>
+          <tr>
+            <td><span class="faixa-label">7 a 12 clientes</span><span class="volume-badge badge-scale">Escala</span></td>
+            <td><span class="fee-valor">R$ 1.090</span><span class="fee-sub">por cliente</span></td>
+            <td style="text-align:right"><span class="fee-valor">R$ 7.630 – 13.080</span></td>
+          </tr>
+          <tr>
+            <td><span class="faixa-label">13 a 20 clientes</span><span class="volume-badge badge-full">Volume</span></td>
+            <td><span class="fee-valor">R$ 990</span><span class="fee-sub">por cliente</span></td>
+            <td style="text-align:right"><span class="fee-valor">R$ 12.870 – 19.800</span></td>
+          </tr>
+          <tr>
+            <td><span class="faixa-label">21 a 30 clientes</span><span class="volume-badge badge-pro">Parceria Estratégica</span></td>
+            <td><span class="fee-valor">R$ 890</span><span class="fee-sub">por cliente</span></td>
+            <td style="text-align:right"><span class="fee-valor">R$ 18.690 – 26.700</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="secao-divisor">
+    <div class="secao-divisor-linha"></div>
+    <div class="secao-divisor-icone">◆</div>
+    <div class="secao-divisor-linha"></div>
+  </div>
+
+  <!-- ESCOPO -->
+  <div class="secao reveal" id="escopo">
+    <div class="secao-label">O que cada modelo entrega</div>
+    <h2 class="secao-titulo">Escopo detalhado por tipo de parceria.</h2>
+    <p class="secao-subtitulo">Defina qual modelo faz mais sentido para a sua agência. Os dois são escaláveis, padronizados e com entrega previsível em todos os clientes.</p>
+
+    <div class="escopo-grid">
+      <div class="escopo-card reveal">
+        <div class="escopo-titulo">Tráfego Pago · Escopo Operacional</div>
+        <div class="escopo-preco">R$ 530 – R$ 800/cliente/mês</div>
+        <ul class="escopo-lista">
+          <li><strong>Organização operacional da conta:</strong> estrutura de campanha clara, sem bagunça de histórico.</li>
+          <li><strong>Rastreamento e captação configurados:</strong> pixel, eventos, formulários e conversões alinhados.</li>
+          <li><strong>Otimização recorrente:</strong> lances, segmentações, pausas e ajustes aplicados toda semana.</li>
+          <li><strong>Métricas reportadas com clareza:</strong> CPC, CPL, CTR e conversões em formato objetivo.</li>
+          <li><strong>Relatório semanal pronto</strong> para você repassar ao cliente com a sua marca.</li>
+          <li><strong>Suporte direto ao seu ponto de contato:</strong> comunicação clara, sem ruído operacional.</li>
+          <li><strong>Entrega padronizada</strong> e replicável entre clientes — processo documentado.</li>
+          <li>Sem aparição da D'Leads. Sem contato direto com o cliente final.</li>
+        </ul>
+      </div>
+
+      <div class="escopo-card reveal">
+        <div class="escopo-titulo">Tráfego + Funil · Escopo Completo</div>
+        <div class="escopo-preco">R$ 890 – R$ 1.300/cliente/mês</div>
+        <ul class="escopo-lista">
+          <li>Tudo do modelo de tráfego puro.</li>
+          <li><strong>Estrutura de captação organizada:</strong> landing page, formulário e jornada do lead definidos.</li>
+          <li><strong>Apoio em copy e conversão:</strong> revisão de mensagem, CTA e abordagem da oferta.</li>
+          <li><strong>Funil estruturado:</strong> fluxo do clique até o contato qualificado, sem etapas soltas.</li>
+          <li><strong>Quiz ou formulário de qualificação</strong> conforme o perfil do cliente.</li>
+          <li><strong>Automação e integração:</strong> resposta automática, notificação e fluxo básico configurado.</li>
+          <li><strong>Elevação da qualidade do lead</strong> antes da passagem para o comercial do cliente.</li>
+          <li>Relatório semanal com dados de tráfego e conversão por etapa.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="secao-divisor">
+    <div class="secao-divisor-linha"></div>
+    <div class="secao-divisor-icone">◆</div>
+    <div class="secao-divisor-linha"></div>
+  </div>
+
+  <!-- ADICIONAIS -->
+  <div class="secao reveal" id="adicionais">
+    <div class="secao-label">Serviços Adicionais · Parceria</div>
+    <h2 class="secao-titulo">O que pode ser contratado à parte.</h2>
+    <p class="secao-subtitulo">Itens complementares disponíveis por cliente ou para toda a base da agência, com negociação por volume.</p>
+
+    <div class="tabela-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Serviço</th>
+            <th>O que inclui</th>
+            <th style="text-align:right">Faixa de Valor</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="font-weight:700;font-size:17px">Setup de Cliente</td>
+            <td>Organização inicial da conta, pixel e eventos de conversão, estrutura de campanha e checklist de rastreamento. Cobrado uma vez por cliente.</td>
+            <td><span class="faixa-preco">R$ 400 – R$ 800</span></td>
+          </tr>
+          <tr>
+            <td style="font-weight:700;font-size:17px">Landing Page</td>
+            <td>Criação de página de captura focada em conversão. Escopo definido conforme a necessidade do cliente — copy, estrutura, CTA, formulário e rastreamento.</td>
+            <td><span class="faixa-preco">A partir de R$ 700</span></td>
+          </tr>
+          <tr>
+            <td style="font-weight:700;font-size:17px">Quiz ou Formulário de Qualificação</td>
+            <td>Criação e configuração com lógica condicional, copy das perguntas e integração básica.</td>
+            <td><span class="faixa-preco">R$ 400 – R$ 900</span></td>
+          </tr>
+          <tr>
+            <td style="font-weight:700;font-size:17px">Automação & Integração</td>
+            <td>Fluxo de resposta automática, notificação e acompanhamento. Integração entre formulário, WhatsApp e/ou CRM. Até 2 fluxos por cliente.</td>
+            <td><span class="faixa-preco">R$ 500 – R$ 1.200</span></td>
+          </tr>
+          <tr>
+            <td style="font-weight:700;font-size:17px">Tracking Avançado</td>
+            <td>GA4, GTM, conversões customizadas e auditoria de rastreamento. Entregue com relatório de validação de dados.</td>
+            <td><span class="faixa-preco">R$ 700 – R$ 1.600</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="nota-box">
+      <strong>Negociação por volume</strong>
+      Para agências com 3 ou mais clientes demandando o mesmo serviço adicional, existe margem para negociação de pacote. Entre em contato para avaliação de escopo e precificação por lote.
+    </div>
+  </div>
+
+  <div class="rodape-pagina">
+    <span class="rodape-logo">D'LEADS</span>
+    <span>Proposta Comercial · Parceria com Agências · 2025</span>
+    <a href="#topo" style="color:#4a7aaa;text-decoration:none;font-size:13px;">↑ Voltar ao topo</a>
+  </div>
+</div>
+
+<script>
+const nav = document.getElementById('navFlutuante');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('visivel', window.scrollY > window.innerHeight * 0.6);
+});
+
+const sections = document.querySelectorAll('[id]');
+const navLinks = document.querySelectorAll('.nav-link');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(sec => { if (window.scrollY >= sec.offsetTop - 100) current = sec.id; });
+  navLinks.forEach(link => {
+    link.classList.toggle('ativo', link.getAttribute('href') === '#' + current);
+  });
+});
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('visivel'), i * 80);
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.08 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

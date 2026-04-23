@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Propostas de Clientes</title>
+<style>
+:root {
+  --bg: #0d1117;
+  --panel: rgba(17, 24, 39, 0.88);
+  --panel-border: rgba(255, 255, 255, 0.08);
+  --text: #e5eef8;
+  --muted: #94a3b8;
+  --accent: #c8bfa8;
+  --accent-strong: #4a7aaa;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 32px;
+  font-family: Inter, Arial, sans-serif;
+  background:
+    radial-gradient(circle at top right, rgba(74, 122, 170, 0.22), transparent 30%),
+    linear-gradient(145deg, #0d1117 0%, #162031 60%, #1a2e45 100%);
+  color: var(--text);
+}
+
+main {
+  width: min(900px, 100%);
+  padding: 40px;
+  border: 1px solid var(--panel-border);
+  border-radius: 24px;
+  background: var(--panel);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.28);
+}
+
+h1 {
+  margin: 0 0 12px;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  line-height: 1.05;
+  font-family: "Playfair Display", Georgia, serif;
+  color: var(--accent);
+}
+
+p {
+  margin: 0 0 16px;
+  max-width: 62ch;
+  color: var(--muted);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.back {
+  display: inline-block;
+  margin-bottom: 22px;
+  color: var(--accent-strong);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.note {
+  margin-top: 22px;
+  padding: 18px;
+  border-radius: 16px;
+  border: 1px solid var(--panel-border);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+code {
+  color: var(--accent);
+  font-family: Consolas, monospace;
+}
+</style>
+</head>
+<body>
+<main>
+  <a class="back" href="../">Voltar para a central</a>
+  <h1>Propostas de Clientes</h1>
+  <p>Esta pasta fica reservada para os HTML de clientes que voce quiser subir no futuro.</p>
+  <p>Cada nova proposta pode entrar em uma subpasta propria, por exemplo <code>/propostas/clientes/nome-do-cliente/</code>, com um <code>index.html</code> dentro.</p>
+  <div class="note">
+    Quando voce me mandar um novo HTML, eu posso colocar aqui e deixar a URL pronta para publicar no Pages.
+  </div>
+</main>
+</body>
+</html>

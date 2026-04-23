@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Central de Propostas</title>
+<title>Dual Leads e Trafego</title>
 <style>
 :root {
   --bg: #0d1117;
@@ -42,7 +42,7 @@ main {
 
 h1 {
   margin: 0 0 12px;
-  font-size: clamp(2rem, 4vw, 3.3rem);
+  font-size: clamp(2rem, 4vw, 3.2rem);
   line-height: 1.05;
   font-family: "Playfair Display", Georgia, serif;
   color: var(--accent);
@@ -56,37 +56,28 @@ p {
   line-height: 1.7;
 }
 
+.back {
+  display: inline-block;
+  margin-bottom: 22px;
+  color: var(--accent-strong);
+  text-decoration: none;
+  font-weight: 600;
+}
+
 .grid {
   display: grid;
-  gap: 18px;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
 }
 
 .card {
   display: block;
-  padding: 24px;
+  padding: 22px;
   border-radius: 18px;
   text-decoration: none;
   color: inherit;
   border: 1px solid var(--panel-border);
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02));
-  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
-}
-
-.card:hover {
-  transform: translateY(-4px);
-  border-color: rgba(200, 191, 168, 0.45);
-  background: linear-gradient(180deg, rgba(74, 122, 170, 0.12), rgba(255, 255, 255, 0.04));
-}
-
-.eyebrow {
-  display: inline-block;
-  margin-bottom: 12px;
-  color: var(--accent-strong);
-  font-size: 0.78rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  font-weight: 700;
 }
 
 .card strong {
@@ -100,27 +91,25 @@ p {
   color: var(--muted);
   line-height: 1.6;
 }
-
-@media (max-width: 640px) {
-  body { padding: 20px; }
-  main { padding: 28px 20px; }
-}
 </style>
 </head>
 <body>
 <main>
-  <h1>Central de Propostas</h1>
-  <p>As propostas agora ficam separadas por finalidade: uma pasta para materiais da Dual Leads e Trafego, e outra reservada para propostas de clientes que voce subir depois.</p>
+  <a class="back" href="../">Voltar para a central</a>
+  <h1>Dual Leads e Trafego</h1>
+  <p>Esta pasta concentra as propostas ligadas a captacao, trafego pago, parcerias e materiais institucionais da operacao.</p>
   <div class="grid">
-    <a class="card" href="./dualleads-trafego/">
-      <div class="eyebrow">Pasta Interna</div>
-      <strong>Dual Leads e Trafego</strong>
-      <span>Centraliza as propostas comerciais e estrategicas ligadas a operacao da Dual Leads.</span>
+    <a class="card" href="./trafego-estrategico/">
+      <strong>Trafego Estrategico</strong>
+      <span>Proposta comercial de trafego estrategico.</span>
     </a>
-    <a class="card" href="./clientes/">
-      <div class="eyebrow">Pasta Cliente</div>
-      <strong>Propostas de Clientes</strong>
-      <span>Area pronta para receber novos HTML de clientes e publicar cada um no GitHub Pages.</span>
+    <a class="card" href="./trafego-pago/">
+      <strong>Trafego Pago</strong>
+      <span>Proposta comercial de trafego pago.</span>
+    </a>
+    <a class="card" href="./agencias/">
+      <strong>Agencias</strong>
+      <span>Proposta para agencias e parceiros.</span>
     </a>
   </div>
 </main>

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Propostas de Clientes</title>
+<title>Proposta Comercial</title>
 <style>
 :root {
   --bg: #0d1117;
@@ -72,6 +72,40 @@ p {
   background: rgba(255, 255, 255, 0.03);
 }
 
+.list {
+  display: grid;
+  gap: 16px;
+  margin-top: 28px;
+}
+
+.card {
+  display: block;
+  padding: 20px 22px;
+  border-radius: 18px;
+  border: 1px solid var(--panel-border);
+  background: rgba(255, 255, 255, 0.04);
+  text-decoration: none;
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(200, 191, 168, 0.45);
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.card strong {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--text);
+  font-size: 1.06rem;
+}
+
+.card span {
+  color: var(--muted);
+  line-height: 1.6;
+}
+
 code {
   color: var(--accent);
   font-family: Consolas, monospace;
@@ -81,9 +115,15 @@ code {
 <body>
 <main>
   <a class="back" href="../">Voltar para a central</a>
-  <h1>Propostas de Clientes</h1>
-  <p>Esta pasta fica reservada para os HTML de clientes que voce quiser subir no futuro.</p>
-  <p>Cada nova proposta pode entrar em uma subpasta propria, por exemplo <code>/propostas/clientes/nome-do-cliente/</code>, com um <code>index.html</code> dentro.</p>
+  <h1>Proposta Comercial</h1>
+  <p>Esta area concentra as propostas comerciais publicadas para clientes.</p>
+  <p>Cada nova proposta entra em uma subpasta propria, por exemplo <code>/propostas/Proposta_Comercial/nome-do-cliente/</code>, com um <code>index.html</code> dentro.</p>
+  <div class="list">
+    <a class="card" href="./leonardo-lima/">
+      <strong>Leonardo Lima</strong>
+      <span>Proposta comercial publicada com CTA de WhatsApp ajustado e pronta para abrir no GitHub Pages.</span>
+    </a>
+  </div>
   <div class="note">
     Quando voce me mandar um novo HTML, eu posso colocar aqui e deixar a URL pronta para publicar no Pages.
   </div>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Propostas D'Leads</title>
+<style>
+:root {
+  --bg: #0d1117;
+  --panel: #111827;
+  --panel-border: rgba(255, 255, 255, 0.08);
+  --text: #e5eef8;
+  --muted: #94a3b8;
+  --accent: #c8bfa8;
+  --accent-strong: #4a7aaa;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 32px;
+  font-family: Inter, Arial, sans-serif;
+  background:
+    radial-gradient(circle at top right, rgba(74, 122, 170, 0.22), transparent 30%),
+    linear-gradient(145deg, #0d1117 0%, #162031 60%, #1a2e45 100%);
+  color: var(--text);
+}
+
+main {
+  width: min(920px, 100%);
+  padding: 40px;
+  border: 1px solid var(--panel-border);
+  border-radius: 24px;
+  background: rgba(17, 24, 39, 0.88);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.28);
+}
+
+h1 {
+  margin: 0 0 12px;
+  font-size: clamp(2rem, 4vw, 3.4rem);
+  line-height: 1.05;
+  font-family: "Playfair Display", Georgia, serif;
+  color: var(--accent);
+}
+
+p {
+  margin: 0 0 28px;
+  max-width: 60ch;
+  color: var(--muted);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.card {
+  display: block;
+  padding: 22px;
+  border-radius: 18px;
+  text-decoration: none;
+  color: inherit;
+  border: 1px solid var(--panel-border);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02));
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(200, 191, 168, 0.45);
+  background: linear-gradient(180deg, rgba(74, 122, 170, 0.12), rgba(255, 255, 255, 0.04));
+}
+
+.eyebrow {
+  display: inline-block;
+  margin-bottom: 12px;
+  color: var(--accent-strong);
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.card strong {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 1.15rem;
+  color: var(--text);
+}
+
+.card span {
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+@media (max-width: 640px) {
+  body { padding: 20px; }
+  main { padding: 28px 20px; }
+}
+</style>
+</head>
+<body>
+<main>
+  <h1>Propostas D'Leads</h1>
+  <p>As tres apresentacoes estao publicadas no mesmo repositorio, cada uma com sua propria rota no GitHub Pages.</p>
+  <div class="grid">
+    <a class="card" href="./trafego-estrategico/">
+      <div class="eyebrow">Rota 01</div>
+      <strong>Trafego Estrategico</strong>
+      <span>Versao publicada da proposta comercial de trafego estrategico.</span>
+    </a>
+    <a class="card" href="./trafego-pago/">
+      <div class="eyebrow">Rota 02</div>
+      <strong>Trafego Pago</strong>
+      <span>Versao publicada da proposta comercial de trafego pago.</span>
+    </a>
+    <a class="card" href="./agencias/">
+      <div class="eyebrow">Rota 03</div>
+      <strong>Agencias</strong>
+      <span>Versao publicada da proposta voltada para agencias e parceiros.</span>
+    </a>
+  </div>
+</main>
+</body>
+</html>

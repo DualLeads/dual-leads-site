@@ -134,10 +134,14 @@ body {
 .secao-titulo { font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 700; color: #0d1117; line-height: 1.2; margin-bottom: 18px; }
 
 .secao-subtitulo { font-size: 17px; color: #64748B; max-width: 700px; line-height: 1.85; margin-bottom: 36px; }
+.como-funciona-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin-top: 28px; }
+.como-funciona-card { background: linear-gradient(180deg, #FFFFFF, #F8FAFC); border: 1px solid #E2E8F0; border-radius: 16px; padding: 22px; box-shadow: 0 4px 18px rgba(15, 23, 42, 0.04); }
+.como-funciona-card strong { display: block; margin-bottom: 8px; font-size: 15px; color: #0d1117; }
+.como-funciona-card span { display: block; font-size: 14px; line-height: 1.7; color: #64748B; }
 
-.tabela-wrap { border-radius: 14px; border: 1px solid #E2E8F0; overflow: hidden; margin-bottom: 20px; box-shadow: 0 4px 24px rgba(0,0,0,0.05); }
+.tabela-wrap { border-radius: 14px; border: 1px solid #E2E8F0; overflow-x: auto; overflow-y: hidden; margin-bottom: 20px; box-shadow: 0 4px 24px rgba(0,0,0,0.05); -webkit-overflow-scrolling: touch; }
 
-table { width: 100%; border-collapse: collapse; }
+table { width: 100%; min-width: 760px; border-collapse: collapse; }
 thead tr { background: #0d1117; }
 thead th { color: #c8bfa8; padding: 20px 24px; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; text-align: left; }
 thead th:last-child { text-align: right; }
@@ -227,6 +231,7 @@ tbody td:last-child { text-align: right; }
   .pagina { padding: 48px 32px; }
   .cards-grid { grid-template-columns: 1fr; }
   .setup-grid { grid-template-columns: 1fr; }
+  .como-funciona-grid { grid-template-columns: 1fr; }
   .nav-links { display: none; }
   .secao-titulo { font-size: 28px; }
 }
@@ -238,9 +243,16 @@ tbody td:last-child { text-align: right; }
   .pagina { padding: 36px 20px; }
   .pagina-header { flex-direction: column; align-items: flex-start; gap: 6px; }
   .nav-flutuante { padding: 0 20px; }
+  .secao { margin-bottom: 56px; }
+  .secao-subtitulo { font-size: 15px; line-height: 1.75; margin-bottom: 28px; }
+  .como-funciona-card { padding: 18px; }
+  .tabela-wrap { margin-left: -2px; margin-right: -2px; border-radius: 16px; }
+  table { min-width: 640px; }
   thead th { padding: 14px 14px; font-size: 10px; }
   tbody td { padding: 16px 14px; font-size: 14px; }
   .fee-valor { font-size: 22px; }
+  .fee-hibrido { font-size: 13px; }
+  .nota-box { padding: 20px 18px; font-size: 15px; line-height: 1.75; }
   .rodape-pagina { flex-direction: column; gap: 8px; text-align: center; }
 }
 </style>
@@ -290,6 +302,20 @@ tbody td:last-child { text-align: right; }
 
   <div class="secao reveal" id="como-funciona">
     <div class="secao-label">Como funciona</div>
+    <div class="como-funciona-grid">
+      <div class="como-funciona-card">
+        <strong>1. Captacao com destino</strong>
+        <span>O anuncio nao trabalha sozinho: cada clique e direcionado para uma estrutura pensada para captar e filtrar melhor a oportunidade.</span>
+      </div>
+      <div class="como-funciona-card">
+        <strong>2. Funil em operacao</strong>
+        <span>Organizamos pagina, mensagens, automacoes e pontos de conversao para o lead avancar com mais clareza.</span>
+      </div>
+      <div class="como-funciona-card">
+        <strong>3. Ajuste mensal continuo</strong>
+        <span>A jornada e revisada com base nos dados para melhorar taxa de conversao, qualidade do lead e eficiencia da verba.</span>
+      </div>
+    </div>
     <h2 class="secao-titulo">Mais do que anúncio — uma jornada construída para converter.</h2>
     <p class="secao-subtitulo">Tráfego sem estrutura de captação é verba desperdiçada. O clique precisa chegar a algum lugar — uma página que converte, uma sequência que aquece, um funil que qualifica. Esses planos combinam gestão de mídia paga com a construção, operação e atualização mensal da jornada que transforma o clique em oportunidade real. O funil não é entregue uma vez e abandonado: é mantido e ajustado conforme os dados evoluem.</p>
   </div>

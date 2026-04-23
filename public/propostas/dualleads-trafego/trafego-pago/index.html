@@ -301,16 +301,47 @@ body {
   margin-bottom: 36px;
 }
 
+.como-funciona-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 28px;
+}
+
+.como-funciona-card {
+  background: linear-gradient(180deg, #FFFFFF, #F8FAFC);
+  border: 1px solid #E2E8F0;
+  border-radius: 16px;
+  padding: 22px;
+  box-shadow: 0 4px 18px rgba(15, 23, 42, 0.04);
+}
+
+.como-funciona-card strong {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 15px;
+  color: #0d1117;
+}
+
+.como-funciona-card span {
+  display: block;
+  font-size: 14px;
+  line-height: 1.7;
+  color: #64748B;
+}
+
 /* ========= TABELA ========= */
 .tabela-wrap {
   border-radius: 14px;
   border: 1px solid #E2E8F0;
-  overflow: hidden;
+  overflow-x: auto;
+  overflow-y: hidden;
   margin-bottom: 20px;
   box-shadow: 0 4px 24px rgba(0,0,0,0.05);
+  -webkit-overflow-scrolling: touch;
 }
 
-table { width: 100%; border-collapse: collapse; }
+table { width: 100%; min-width: 760px; border-collapse: collapse; }
 thead tr { background: #0d1117; }
 
 thead th {
@@ -580,6 +611,7 @@ tbody td:last-child { text-align: right; }
   .pagina { padding: 48px 32px; }
   .cards-grid { grid-template-columns: 1fr; }
   .setup-grid { grid-template-columns: 1fr; }
+  .como-funciona-grid { grid-template-columns: 1fr; }
   .nav-links { display: none; }
   .secao-titulo { font-size: 28px; }
 }
@@ -591,11 +623,17 @@ tbody td:last-child { text-align: right; }
   .pagina { padding: 36px 20px; }
   .pagina-header { flex-direction: column; align-items: flex-start; gap: 6px; }
   .nav-flutuante { padding: 0 20px; }
+  .secao { margin-bottom: 56px; }
+  .secao-subtitulo { font-size: 15px; line-height: 1.75; margin-bottom: 28px; }
+  .como-funciona-card { padding: 18px; }
+  .tabela-wrap { margin-left: -2px; margin-right: -2px; border-radius: 16px; }
+  table { min-width: 640px; font-size: 13px; }
   thead th { padding: 14px 14px; font-size: 10px; }
   tbody td { padding: 16px 14px; font-size: 14px; }
   .fee-valor { font-size: 22px; }
+  .fee-hibrido, .midia-valor { font-size: 13px; }
+  .nota-box { padding: 20px 18px; font-size: 15px; line-height: 1.75; }
   .rodape-pagina { flex-direction: column; gap: 8px; text-align: center; }
-  table { font-size: 13px; }
 }
 </style>
 </head>
@@ -660,6 +698,20 @@ tbody td:last-child { text-align: right; }
   <!-- COMO FUNCIONA -->
   <div class="secao reveal" id="como-funciona">
     <div class="secao-label">Como funciona</div>
+    <div class="como-funciona-grid">
+      <div class="como-funciona-card">
+        <strong>1. Diagnostico e direcao</strong>
+        <span>Comecamos entendendo oferta, publico, verba, historico e gargalos antes de abrir ou escalar campanhas.</span>
+      </div>
+      <div class="como-funciona-card">
+        <strong>2. Estrutura e operacao</strong>
+        <span>Configuramos rastreamento, campanhas, segmentacoes e copys com rotina de otimizacao semanal.</span>
+      </div>
+      <div class="como-funciona-card">
+        <strong>3. Leitura e ajuste</strong>
+        <span>Os numeros viram decisao pratica: revisamos performance, realocamos verba e refinamos a captacao continuamente.</span>
+      </div>
+    </div>
     <h2 class="secao-titulo">Uma operação construída para gerar resultado — não apenas rodar anúncio.</h2>
     <p class="secao-subtitulo">Cada real investido em mídia precisa de inteligência por trás. Os planos abaixo cobrem a operação completa: diagnóstico, estrutura, campanha, otimização semanal e acompanhamento contínuo. A verba de mídia vai diretamente para as plataformas — Google, Meta, TikTok. A mensalidade de gestão é separada e cobre tudo o que transforma verba em resultado.</p>
   </div>

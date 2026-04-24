@@ -3,16 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Central de Propostas</title>
+<meta name="description" content="Central premium da Dual Leads para navegar entre estruturas internas e propostas comerciais publicadas para clientes.">
+<title>Central de Propostas | Dual Leads</title>
 <style>
 :root {
-  --bg: #0d1117;
-  --panel: rgba(17, 24, 39, 0.88);
+  --bg: #0b1018;
+  --panel: rgba(12, 18, 29, 0.84);
+  --panel-soft: rgba(255, 255, 255, 0.04);
   --panel-border: rgba(255, 255, 255, 0.08);
-  --text: #e5eef8;
-  --muted: #94a3b8;
-  --accent: #c8bfa8;
-  --accent-strong: #4a7aaa;
+  --text: #edf3fb;
+  --muted: #9ba9bc;
+  --accent: #d9c4a1;
+  --accent-strong: #7aa2cd;
+  --accent-soft: rgba(217, 196, 161, 0.12);
+  --shadow: 0 30px 80px rgba(0, 0, 0, 0.32);
 }
 
 * { box-sizing: border-box; }
@@ -20,109 +24,243 @@
 body {
   margin: 0;
   min-height: 100vh;
-  display: grid;
-  place-items: center;
-  padding: 32px;
-  font-family: Inter, Arial, sans-serif;
+  padding: 28px;
+  font-family: Georgia, "Times New Roman", serif;
   background:
-    radial-gradient(circle at top right, rgba(74, 122, 170, 0.22), transparent 30%),
-    linear-gradient(145deg, #0d1117 0%, #162031 60%, #1a2e45 100%);
+    radial-gradient(circle at top left, rgba(90, 134, 182, 0.22), transparent 26%),
+    radial-gradient(circle at top right, rgba(217, 196, 161, 0.16), transparent 24%),
+    linear-gradient(145deg, #0b1018 0%, #121b2a 48%, #0f1723 100%);
   color: var(--text);
 }
 
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: radial-gradient(circle at center, black 42%, transparent 84%);
+  opacity: 0.55;
+}
+
 main {
-  width: min(980px, 100%);
-  padding: 40px;
+  position: relative;
+  width: min(1120px, 100%);
+  margin: 0 auto;
+  padding: 42px;
   border: 1px solid var(--panel-border);
-  border-radius: 24px;
+  border-radius: 30px;
   background: var(--panel);
-  backdrop-filter: blur(12px);
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(16px);
+  box-shadow: var(--shadow);
+}
+
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--accent);
+  font: 700 0.78rem/1.2 Arial, sans-serif;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.kicker::before {
+  content: "";
+  width: 42px;
+  height: 1px;
+  background: rgba(217, 196, 161, 0.34);
 }
 
 h1 {
-  margin: 0 0 12px;
-  font-size: clamp(2rem, 4vw, 3.3rem);
-  line-height: 1.05;
-  font-family: "Playfair Display", Georgia, serif;
-  color: var(--accent);
+  margin: 18px 0 14px;
+  font-size: clamp(2.9rem, 6vw, 5.2rem);
+  line-height: 0.95;
+  letter-spacing: -0.045em;
+  max-width: 11ch;
+  color: var(--text);
+  text-wrap: balance;
 }
 
-p {
-  margin: 0 0 28px;
-  max-width: 60ch;
+.lead {
+  margin: 0;
+  max-width: 68ch;
   color: var(--muted);
-  font-size: 1.05rem;
-  line-height: 1.7;
+  font: 1.08rem/1.78 Arial, sans-serif;
+}
+
+.hero-strip {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 18px;
+  margin-top: 28px;
+}
+
+.hero-card,
+.card,
+.signal {
+  border: 1px solid var(--panel-border);
+  border-radius: 22px;
+  background: linear-gradient(180deg, var(--panel-soft), rgba(255,255,255,0.02));
+  box-shadow: 0 20px 48px rgba(0,0,0,0.18);
+}
+
+.hero-card {
+  padding: 24px 26px;
+}
+
+.hero-card strong,
+.signal strong {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--text);
+  font-size: 1.1rem;
+}
+
+.hero-card span,
+.signal span {
+  color: var(--muted);
+  font: 0.98rem/1.7 Arial, sans-serif;
+}
+
+.signals {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.signal {
+  padding: 18px;
 }
 
 .grid {
   display: grid;
   gap: 18px;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  margin-top: 22px;
 }
 
 .card {
   display: block;
   padding: 24px;
-  border-radius: 18px;
-  text-decoration: none;
   color: inherit;
-  border: 1px solid var(--panel-border);
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02));
-  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+  text-decoration: none;
+  transition: transform 0.22s ease, border-color 0.22s ease, background 0.22s ease;
 }
 
 .card:hover {
   transform: translateY(-4px);
-  border-color: rgba(200, 191, 168, 0.45);
-  background: linear-gradient(180deg, rgba(74, 122, 170, 0.12), rgba(255, 255, 255, 0.04));
+  border-color: rgba(217, 196, 161, 0.42);
+  background: linear-gradient(180deg, rgba(90, 134, 182, 0.14), rgba(255,255,255,0.04));
 }
 
 .eyebrow {
   display: inline-block;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
   color: var(--accent-strong);
-  font-size: 0.78rem;
-  letter-spacing: 0.12em;
+  font: 700 0.76rem/1.2 Arial, sans-serif;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  font-weight: 700;
 }
 
 .card strong {
   display: block;
   margin-bottom: 10px;
-  font-size: 1.15rem;
   color: var(--text);
+  font-size: 1.22rem;
 }
 
 .card span {
   color: var(--muted);
-  line-height: 1.6;
+  font: 0.98rem/1.72 Arial, sans-serif;
+}
+
+.card small {
+  display: block;
+  margin-top: 16px;
+  color: var(--accent);
+  font: 700 0.76rem/1.2 Arial, sans-serif;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.note {
+  margin-top: 22px;
+  padding: 18px 20px;
+  border-radius: 18px;
+  border: 1px solid var(--panel-border);
+  background: var(--accent-soft);
+  color: var(--muted);
+  font: 0.96rem/1.7 Arial, sans-serif;
+}
+
+@media (max-width: 900px) {
+  .hero-strip,
+  .signals {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 640px) {
-  body { padding: 20px; }
+  body { padding: 18px; }
   main { padding: 28px 20px; }
+  h1 { max-width: none; }
 }
 </style>
 </head>
 <body>
 <main>
-  <h1>Central de Propostas</h1>
-  <p>As propostas agora ficam separadas por finalidade: uma pasta para materiais da Dual Leads e Trafego, e outra reservada para propostas de clientes que voce subir depois.</p>
+  <span class="kicker">Dual Leads</span>
+  <h1>Central de propostas com leitura rapida, hierarquia clara e rota certa.</h1>
+  <p class="lead">Esta central separa o que e material interno de operacao do que ja e entrega final para cliente. A ideia e reduzir confusao, acelerar acesso e manter uma apresentacao mais premium em cada rota.</p>
+
+  <div class="hero-strip">
+    <div class="hero-card">
+      <strong>Como navegar sem erro</strong>
+      <span>Use a rota interna quando o material fizer parte da estrutura comercial e estrategica da Dual Leads. Use proposta comercial quando a pagina ja estiver pronta para apresentar, publicar e compartilhar com cliente.</span>
+    </div>
+    <div class="hero-card">
+      <strong>O que esta central protege</strong>
+      <span>URL mais limpa, assets melhor organizados, leitura mais rapida para o time e mais confianca visual para quem chegar por link publicado no GitHub Pages.</span>
+    </div>
+  </div>
+
+  <div class="signals">
+    <div class="signal">
+      <strong>Estrutura</strong>
+      <span>Cada frente tem sua propria rota e evita misturar material interno com pagina final.</span>
+    </div>
+    <div class="signal">
+      <strong>Velocidade</strong>
+      <span>Quem entra aqui entende em segundos onde clicar e o que esperar de cada pasta.</span>
+    </div>
+    <div class="signal">
+      <strong>Apresentacao</strong>
+      <span>O visual passa mais controle, mais criterio e menos sensacao de arquivo solto.</span>
+    </div>
+  </div>
+
   <div class="grid">
     <a class="card" href="./dualleads-trafego/">
       <div class="eyebrow">Pasta Interna</div>
       <strong>Dual Leads e Trafego</strong>
-      <span>Centraliza as propostas comerciais e estrategicas ligadas a operacao da Dual Leads.</span>
+      <span>Centraliza propostas comerciais, estruturais e materiais de operacao ligados ao motor interno da Dual Leads.</span>
+      <small>Abrir area interna</small>
     </a>
+
     <a class="card" href="./Proposta_Comercial/">
       <div class="eyebrow">Pasta Cliente</div>
       <strong>Proposta Comercial</strong>
-      <span>Area pronta para receber novos HTML de clientes e publicar cada um no GitHub Pages.</span>
+      <span>Reune paginas publicadas para clientes, prontas para abrir no GitHub Pages com rota dedicada, assets locais e apresentacao mais refinada.</span>
+      <small>Abrir propostas publicadas</small>
     </a>
   </div>
+
+  <div class="note">Fluxo recomendado: criar a pagina na pasta correta, manter assets ao lado do <code>index.html</code> da proposta e validar o build antes de publicar.</div>
 </main>
 </body>
 </html>

@@ -3,16 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Proposta Comercial</title>
+<meta name="description" content="Area de propostas comerciais publicadas pela Dual Leads para clientes, com paginas prontas para compartilhar e apresentar.">
+<title>Proposta Comercial | Dual Leads</title>
 <style>
 :root {
-  --bg: #0d1117;
-  --panel: rgba(17, 24, 39, 0.88);
+  --bg: #0b1018;
+  --panel: rgba(12, 18, 29, 0.84);
   --panel-border: rgba(255, 255, 255, 0.08);
-  --text: #e5eef8;
-  --muted: #94a3b8;
-  --accent: #c8bfa8;
-  --accent-strong: #4a7aaa;
+  --panel-soft: rgba(255,255,255,0.04);
+  --text: #edf3fb;
+  --muted: #9ba9bc;
+  --accent: #d9c4a1;
+  --accent-strong: #7aa2cd;
+  --shadow: 0 30px 80px rgba(0, 0, 0, 0.32);
 }
 
 * { box-sizing: border-box; }
@@ -20,56 +23,99 @@
 body {
   margin: 0;
   min-height: 100vh;
-  display: grid;
-  place-items: center;
-  padding: 32px;
-  font-family: Inter, Arial, sans-serif;
+  padding: 28px;
+  font-family: Georgia, "Times New Roman", serif;
   background:
-    radial-gradient(circle at top right, rgba(74, 122, 170, 0.22), transparent 30%),
-    linear-gradient(145deg, #0d1117 0%, #162031 60%, #1a2e45 100%);
+    radial-gradient(circle at top left, rgba(90, 134, 182, 0.22), transparent 24%),
+    radial-gradient(circle at top right, rgba(217, 196, 161, 0.14), transparent 24%),
+    linear-gradient(145deg, #0b1018 0%, #121b2a 48%, #0f1723 100%);
   color: var(--text);
 }
 
 main {
-  width: min(900px, 100%);
+  width: min(1020px, 100%);
+  margin: 0 auto;
   padding: 40px;
   border: 1px solid var(--panel-border);
-  border-radius: 24px;
+  border-radius: 30px;
   background: var(--panel);
-  backdrop-filter: blur(12px);
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.28);
-}
-
-h1 {
-  margin: 0 0 12px;
-  font-size: clamp(2rem, 4vw, 3.2rem);
-  line-height: 1.05;
-  font-family: "Playfair Display", Georgia, serif;
-  color: var(--accent);
-}
-
-p {
-  margin: 0 0 16px;
-  max-width: 62ch;
-  color: var(--muted);
-  font-size: 1.05rem;
-  line-height: 1.7;
+  backdrop-filter: blur(16px);
+  box-shadow: var(--shadow);
 }
 
 .back {
-  display: inline-block;
-  margin-bottom: 22px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 24px;
   color: var(--accent-strong);
   text-decoration: none;
-  font-weight: 600;
+  font: 700 0.9rem/1.2 Arial, sans-serif;
+  letter-spacing: 0.04em;
 }
 
-.note {
-  margin-top: 22px;
-  padding: 18px;
-  border-radius: 16px;
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--accent);
+  font: 700 0.78rem/1.2 Arial, sans-serif;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.kicker::before {
+  content: "";
+  width: 42px;
+  height: 1px;
+  background: rgba(217, 196, 161, 0.34);
+}
+
+h1 {
+  margin: 18px 0 14px;
+  font-size: clamp(2.7rem, 6vw, 4.9rem);
+  line-height: 0.96;
+  letter-spacing: -0.04em;
+  max-width: 11ch;
+  text-wrap: balance;
+}
+
+p {
+  margin: 0;
+  max-width: 65ch;
+  color: var(--muted);
+  font: 1.05rem/1.78 Arial, sans-serif;
+}
+
+.hero-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 26px;
+}
+
+.metric,
+.card {
+  border-radius: 22px;
   border: 1px solid var(--panel-border);
-  background: rgba(255, 255, 255, 0.03);
+  background: linear-gradient(180deg, var(--panel-soft), rgba(255,255,255,0.02));
+  box-shadow: 0 20px 48px rgba(0,0,0,0.18);
+}
+
+.metric {
+  padding: 18px;
+}
+
+.metric strong {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--text);
+  font-size: 1.04rem;
+}
+
+.metric span {
+  color: var(--muted);
+  font: 0.95rem/1.65 Arial, sans-serif;
 }
 
 .list {
@@ -80,53 +126,106 @@ p {
 
 .card {
   display: block;
-  padding: 20px 22px;
-  border-radius: 18px;
-  border: 1px solid var(--panel-border);
-  background: rgba(255, 255, 255, 0.04);
+  padding: 22px 24px;
   text-decoration: none;
-  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+  color: inherit;
+  transition: transform 0.22s ease, border-color 0.22s ease, background 0.22s ease;
 }
 
 .card:hover {
-  transform: translateY(-2px);
-  border-color: rgba(200, 191, 168, 0.45);
-  background: rgba(255, 255, 255, 0.07);
+  transform: translateY(-4px);
+  border-color: rgba(217, 196, 161, 0.42);
+  background: linear-gradient(180deg, rgba(90, 134, 182, 0.14), rgba(255,255,255,0.04));
+}
+
+.eyebrow {
+  display: inline-block;
+  margin-bottom: 12px;
+  color: var(--accent-strong);
+  font: 700 0.76rem/1.2 Arial, sans-serif;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
 }
 
 .card strong {
   display: block;
   margin-bottom: 8px;
   color: var(--text);
-  font-size: 1.06rem;
+  font-size: 1.16rem;
 }
 
 .card span {
   color: var(--muted);
-  line-height: 1.6;
+  font: 0.98rem/1.7 Arial, sans-serif;
+}
+
+.card small {
+  display: block;
+  margin-top: 16px;
+  color: var(--accent);
+  font: 700 0.76rem/1.2 Arial, sans-serif;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.note {
+  margin-top: 22px;
+  padding: 18px 20px;
+  border-radius: 18px;
+  border: 1px solid var(--panel-border);
+  background: rgba(217, 196, 161, 0.08);
+  color: var(--muted);
+  font: 0.96rem/1.7 Arial, sans-serif;
 }
 
 code {
   color: var(--accent);
   font-family: Consolas, monospace;
 }
+
+@media (max-width: 820px) {
+  .hero-metrics { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 640px) {
+  body { padding: 18px; }
+  main { padding: 28px 20px; }
+  h1 { max-width: none; }
+}
 </style>
 </head>
 <body>
 <main>
   <a class="back" href="../">Voltar para a central</a>
-  <h1>Proposta Comercial</h1>
-  <p>Esta area concentra as propostas comerciais publicadas para clientes.</p>
-  <p>Cada nova proposta entra em uma subpasta propria, por exemplo <code>/propostas/Proposta_Comercial/nome-do-cliente/</code>, com um <code>index.html</code> dentro.</p>
+  <span class="kicker">Dual Leads</span>
+  <h1>Propostas comerciais publicadas com rota propria e leitura mais executiva.</h1>
+  <p>Esta area concentra paginas prontas para apresentar, compartilhar e publicar. Cada proposta vive em uma subpasta propria, com assets locais e um <code>index.html</code> dedicado para manter a entrega organizada, elegante e facil de atualizar.</p>
+
+  <div class="hero-metrics">
+    <div class="metric">
+      <strong>Rota dedicada</strong>
+      <span>Cada cliente recebe uma URL propria e uma pagina que pode ser aberta sem contexto adicional.</span>
+    </div>
+    <div class="metric">
+      <strong>Assets locais</strong>
+      <span>Logo, imagens e arquivos da proposta ficam ao lado da pagina para evitar quebra no publish.</span>
+    </div>
+    <div class="metric">
+      <strong>Publicacao controlada</strong>
+      <span>O fluxo fica mais seguro para build, revisao e GitHub Pages antes de compartilhar.</span>
+    </div>
+  </div>
+
   <div class="list">
     <a class="card" href="./leonardo-lima/">
+      <div class="eyebrow">Cliente Publicado</div>
       <strong>Leonardo Lima</strong>
-      <span>Proposta comercial publicada com CTA de WhatsApp ajustado e pronta para abrir no GitHub Pages.</span>
+      <span>Proposta comercial premium com estrutura mais estrategica, CTA refinado, menu mobile ajustado, bloco executivo e pagina pronta para apresentar no GitHub Pages.</span>
+      <small>Abrir proposta</small>
     </a>
   </div>
-  <div class="note">
-    Quando voce me mandar um novo HTML, eu posso colocar aqui e deixar a URL pronta para publicar no Pages.
-  </div>
+
+  <div class="note">Fluxo recomendado: criar a subpasta do cliente, manter os assets ao lado da pagina, validar o build e revisar a copy final antes de publicar.</div>
 </main>
 </body>
 </html>

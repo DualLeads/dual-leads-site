@@ -745,20 +745,6 @@ const BusinessInfo = () => {
               mantém canal público de contato por e-mail e WhatsApp para demandas comerciais
               e institucionais.
             </p>
-            <ul className="business-checks">
-              <li>
-                <CheckCircle2 size={18} />
-                Endereço comercial visível no site e no footer
-              </li>
-              <li>
-                <CheckCircle2 size={18} />
-                E-mail institucional público
-              </li>
-              <li>
-                <CheckCircle2 size={18} />
-                Identificação empresarial com CNPJ
-              </li>
-            </ul>
           </motion.div>
         </div>
       </div>

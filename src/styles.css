@@ -1241,26 +1241,6 @@ section[id] {
   color: var(--color-primary-hover);
 }
 
-.business-checks {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-md);
-  margin-top: var(--space-xl);
-}
-
-.business-checks li {
-  display: flex;
-  align-items: flex-start;
-  gap: var(--space-sm);
-  color: var(--color-text-secondary);
-}
-
-.business-checks svg {
-  flex-shrink: 0;
-  color: var(--color-success);
-  margin-top: 2px;
-}
-
 .privacy-list {
   display: grid;
   gap: var(--space-lg);

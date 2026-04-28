@@ -12,11 +12,8 @@ import {
   MapPin,
   Menu,
   MessageCircle,
-  Play,
-  Quote,
   Settings,
   ShieldCheck,
-  Star,
   Target,
   TrendingUp,
   Users,
@@ -59,15 +56,15 @@ const services = [
   },
   {
     number: '02',
-    title: 'Funil e conversão',
+    title: 'Jornada e conversão',
     description:
       'Organização da jornada comercial para reduzir perdas, aumentar resposta e melhorar a taxa de fechamento.',
-    items: ['Funil', 'Qualificação', 'Follow-up', 'Conversão'],
+    items: ['Jornada', 'Qualificação', 'Follow-up', 'Conversão'],
     icon: BarChart3,
     fullDescription:
-      'Muitas operações perdem resultado entre a entrada do lead e a conversa comercial. Revisamos o funil, identificamos gargalos, ajustamos critérios de qualificação e organizamos a passagem entre marketing e vendas.',
+      'Muitas operações perdem resultado entre a entrada do contato e a conversa comercial. Revisamos a jornada, identificamos gargalos, ajustamos critérios de qualificação e organizamos a passagem entre marketing e vendas.',
     benefits: [
-      'Mapeamento das etapas do funil atual',
+      'Mapeamento das etapas da jornada atual',
       'Diagnóstico de perda entre captação, atendimento e venda',
       'Ajuste de critérios de qualificação',
       'Melhoria do fluxo de atendimento e acompanhamento',
@@ -141,37 +138,6 @@ const problems = [
     description:
       'Sem dados consistentes, a empresa otimiza pouco e toma decisões sem evidência clara de performance.',
   },
-];
-
-const testimonials = [
-  {
-    name: 'Carlos Mendes',
-    role: 'CEO, TechSolutions',
-    image:
-      'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face',
-    text: 'A operação ficou muito mais previsível. Saímos do improviso comercial para um processo com meta, acompanhamento e clareza.',
-  },
-  {
-    name: 'Ana Paula Silva',
-    role: 'Diretora Comercial, Innovare',
-    image:
-      'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=face',
-    text: "A D'Leads organizou marketing e vendas como uma mesma operação. Hoje entendemos onde o lead entra, avança e converte.",
-  },
-  {
-    name: 'Roberto Almeida',
-    role: 'Founder, StartupX',
-    image:
-      'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face',
-    text: 'O ganho não foi só em tráfego. Veio junto processo, leitura de dados e disciplina comercial para crescer com base mais sólida.',
-  },
-];
-
-const stats = [
-  { value: '+150%', label: 'Ganho médio em volume qualificado' },
-  { value: '3x', label: 'Mais eficiência de conversão em operações estruturadas' },
-  { value: '-40%', label: 'Redução potencial no custo por aquisição' },
-  { value: '100%', label: 'Foco em leitura de funil e performance' },
 ];
 
 const businessHighlights = [
@@ -258,7 +224,7 @@ const Header = () => {
         </nav>
 
         <a href="#contato" className="btn btn-primary header-cta">
-          Falar com especialista
+          Contato institucional
         </a>
 
         <button
@@ -293,7 +259,7 @@ const Header = () => {
               className="btn btn-primary mobile-cta"
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              Falar com especialista
+              Contato institucional
             </a>
           </motion.div>
         )}
@@ -320,57 +286,28 @@ const Hero = () => {
         >
           <div className="hero-badge">
             <span className="badge-dot"></span>
-            Operação profissional de marketing, tráfego e tecnologia
+            Site institucional da D&apos;Leads
           </div>
 
           <h1 className="hero-title">
-            Marketing, mídia paga e comercial com
-            <span className="hero-title-highlight"> estrutura para crescer.</span>
+            D&apos;Leads:
+            <span className="hero-title-highlight"> marketing, mídia paga e tecnologia.</span>
           </h1>
 
           <p className="hero-subtitle">
-            A D&apos;Leads opera aquisição, performance, automação e crescimento comercial
-            para negócios que precisam de previsibilidade, processo e leitura real de funil.
+            Página pública com posicionamento institucional, áreas de atuação, política de
+            privacidade, CNPJ, endereço físico e canais oficiais de contato.
           </p>
 
           <div className="hero-ctas">
-            <a href="#contato" className="btn btn-primary btn-lg">
-              Solicitar diagnóstico
+            <a href="#business-info" className="btn btn-primary btn-lg">
+              Ver contato oficial
               <ArrowRight size={20} />
             </a>
             <a href="#about-us" className="btn btn-secondary btn-lg">
-              <Play size={20} />
-              Conhecer a operação
+              <ShieldCheck size={20} />
+              About Us
             </a>
-          </div>
-
-          <div className="hero-proof">
-            <div className="hero-avatars">
-              <img
-                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=40&h=40&fit=crop&crop=face"
-                alt=""
-              />
-              <img
-                src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=40&h=40&fit=crop&crop=face"
-                alt=""
-              />
-              <img
-                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=40&h=40&fit=crop&crop=face"
-                alt=""
-              />
-              <img
-                src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=40&h=40&fit=crop&crop=face"
-                alt=""
-              />
-            </div>
-            <div className="hero-proof-text">
-              <div className="hero-stars">
-                {[...Array(5)].map((_, index) => (
-                  <Star key={index} size={16} fill="#FBBF24" color="#FBBF24" />
-                ))}
-              </div>
-              <span>Operação voltada para contas próprias e gerenciadas de forma autorizada</span>
-            </div>
           </div>
         </motion.div>
 
@@ -387,29 +324,26 @@ const Hero = () => {
                 <span></span>
                 <span></span>
               </div>
-              <span className="dashboard-title">Operação de Performance</span>
+              <span className="dashboard-title">Informações institucionais</span>
             </div>
             <div className="dashboard-content">
               <div className="dashboard-stat">
-                <span className="stat-label">Aquisição com intenção</span>
-                <span className="stat-value">+247%</span>
-                <div className="stat-bar">
-                  <div className="stat-bar-fill" style={{ width: '85%' }}></div>
-                </div>
+                <span className="stat-label">Empresa</span>
+                <span className="institutional-value">{COMPANY.name}</span>
               </div>
               <div className="dashboard-stat">
-                <span className="stat-label">Taxa de avanço no funil</span>
-                <span className="stat-value">32.5%</span>
-                <div className="stat-bar">
-                  <div className="stat-bar-fill" style={{ width: '65%' }}></div>
-                </div>
+                <span className="stat-label">CNPJ</span>
+                <span className="institutional-value">{COMPANY.cnpj}</span>
               </div>
               <div className="dashboard-stat">
-                <span className="stat-label">Eficiência de mídia</span>
-                <span className="stat-value green">-40%</span>
-                <div className="stat-bar">
-                  <div className="stat-bar-fill green" style={{ width: '40%' }}></div>
-                </div>
+                <span className="stat-label">E-mail</span>
+                <a className="institutional-value" href={`mailto:${COMPANY.email}`}>
+                  {COMPANY.email}
+                </a>
+              </div>
+              <div className="dashboard-stat">
+                <span className="stat-label">Endereço</span>
+                <span className="institutional-value">{COMPANY.city}</span>
               </div>
             </div>
           </div>
@@ -612,7 +546,7 @@ const Method = () => {
       number: '02',
       title: 'Desenho da estratégia',
       description:
-        'Definimos prioridades, metas, estrutura de funil, indicadores e plano de implementação alinhado ao negócio.',
+        'Definimos prioridades, metas, estrutura de jornada, indicadores e plano de implementação alinhado ao negócio.',
     },
     {
       number: '03',
@@ -661,71 +595,6 @@ const Method = () => {
                 <p className="step-description">{step.description}</p>
               </div>
               {index < steps.length - 1 && <div className="step-connector"></div>}
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-};
-
-const Stats = () => {
-  return (
-    <section className="stats" id="resultados">
-      <div className="container">
-        <div className="stats-grid">
-          {stats.map((stat, index) => (
-            <motion.div
-              key={stat.label}
-              className="stat-card"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-            >
-              <span className="stat-value">{stat.value}</span>
-              <span className="stat-label">{stat.label}</span>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-};
-
-const Testimonials = () => {
-  return (
-    <section className="testimonials">
-      <div className="container">
-        <motion.div
-          className="section-header"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-        >
-          <span className="section-tag">Percepção de valor</span>
-          <h2 className="section-title">Estrutura que melhora leitura, controle e conversão</h2>
-        </motion.div>
-
-        <div className="testimonials-grid">
-          {testimonials.map((testimonial, index) => (
-            <motion.div
-              key={testimonial.name}
-              className="testimonial-card"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-            >
-              <Quote className="quote-icon" size={32} />
-              <p className="testimonial-text">{testimonial.text}</p>
-              <div className="testimonial-author">
-                <img src={testimonial.image} alt={testimonial.name} />
-                <div>
-                  <span className="author-name">{testimonial.name}</span>
-                  <span className="author-role">{testimonial.role}</span>
-                </div>
-              </div>
             </motion.div>
           ))}
         </div>
@@ -991,7 +860,7 @@ const Footer = () => {
             </a>
             <p className="footer-description">
               Operação de marketing, mídia paga, automação e crescimento comercial para
-              empresas que precisam de estrutura, performance e leitura clara de funil.
+              empresas que precisam de estrutura, performance e leitura clara da jornada comercial.
             </p>
             <div className="footer-legal">
               <p>{COMPANY.name}</p>
@@ -1006,7 +875,6 @@ const Footer = () => {
               <h4>Navegação</h4>
               <a href="#servicos">Serviços</a>
               <a href="#metodo">Método</a>
-              <a href="#resultados">Resultados</a>
               <a href="#contato">Contato</a>
             </div>
             <div className="footer-column">
@@ -1051,8 +919,6 @@ function App() {
         <Problems />
         <Services />
         <Method />
-        <Stats />
-        <Testimonials />
         <AboutUs />
         <BusinessInfo />
         <PrivacyPolicy />

@@ -121,6 +121,10 @@ ul, ol {
   padding: 0 var(--space-lg);
 }
 
+section[id] {
+  scroll-margin-top: 7.5rem;
+}
+
 .btn {
   display: inline-flex;
   align-items: center;
@@ -489,6 +493,15 @@ ul, ol {
 
 .stat-value.green {
   color: var(--color-success);
+}
+
+.institutional-value {
+  display: block;
+  color: var(--color-text-primary);
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
 }
 
 .stat-bar {

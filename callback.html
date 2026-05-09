@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>TikTok Auth — Dois no Corre</title>
+  <style>
+    body { font-family: monospace; background: #0d0d0d; color: #fff; display: flex;
+           align-items: center; justify-content: center; height: 100vh; margin: 0; }
+    .box { background: #1a1a1a; border: 2px solid #FF7A00; border-radius: 12px;
+           padding: 40px; max-width: 600px; text-align: center; }
+    h2 { color: #FF7A00; margin-top: 0; }
+    .code { background: #0a0a0a; border: 1px solid #FF7A00; border-radius: 8px;
+            padding: 16px; font-size: 13px; word-break: break-all;
+            color: #FFD700; margin: 20px 0; user-select: all; cursor: pointer; }
+    .ok  { color: #00e676; font-size: 18px; }
+    .err { color: #ff5252; font-size: 18px; }
+    p    { color: #aaa; font-size: 13px; }
+    button { background: #FF7A00; color: #000; border: none; border-radius: 8px;
+             padding: 10px 24px; font-size: 14px; cursor: pointer; font-weight: bold; }
+    button:hover { background: #FFB347; }
+  </style>
+</head>
+<body>
+<div class="box">
+  <div id="content"></div>
+</div>
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const code  = params.get('code');
+  const error = params.get('error');
+  const div   = document.getElementById('content');
+
+  if (code) {
+    div.innerHTML = `
+      <h2>⚡ Dois no Corre — TikTok Auth</h2>
+      <p class="ok">✅ Autorização concluída!</p>
+      <p>Copie o código abaixo e cole no terminal:</p>
+      <div class="code" onclick="navigator.clipboard.writeText('${code}').then(()=>this.style.border='2px solid #00e676')" title="Clique para copiar">${code}</div>
+      <button onclick="navigator.clipboard.writeText('${code}')">📋 Copiar código</button>
+      <p style="margin-top:20px">Depois de copiar, pode fechar esta aba.</p>
+    `;
+  } else if (error) {
+    div.innerHTML = `
+      <h2>⚡ Dois no Corre</h2>
+      <p class="err">❌ Erro: ${error}</p>
+      <p>${params.get('error_description') || ''}</p>
+    `;
+  } else {
+    div.innerHTML = `
+      <h2>⚡ Dois no Corre</h2>
+      <p class="err">Nenhum código encontrado na URL.</p>
+      <p>Acesse esta página somente via redirecionamento do TikTok.</p>
+    `;
+  }
+</script>
+</body>
+</html>

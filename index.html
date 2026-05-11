@@ -1,29 +1,60 @@
-<!doctype html>
-<html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Site institucional da D'Leads: marketing, mídia paga, automação, informações legais, política de privacidade e canais oficiais de contato."
-    />
-    <meta name="robots" content="index, follow" />
-    <meta name="theme-color" content="#0A0A0B" />
-    <meta name="tiktok-developers-site-verification" content="CKQaIsuoUFEMvoCtPEQKD9DLLuKBIzNc" />
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DNC Publisher — Content Publishing Tool</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0a0a0a; color: #f0f0f0; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2rem; }
+    .container { max-width: 680px; width: 100%; text-align: center; }
+    .logo { font-size: 2.5rem; font-weight: 800; color: #fff; margin-bottom: 0.5rem; letter-spacing: -1px; }
+    .logo span { color: #fe2c55; }
+    .tagline { font-size: 1.1rem; color: #999; margin-bottom: 3rem; }
+    .description { background: #181818; border: 1px solid #2a2a2a; border-radius: 12px; padding: 2rem; text-align: left; margin-bottom: 2rem; line-height: 1.7; color: #ccc; }
+    .description h2 { color: #fff; font-size: 1.1rem; margin-bottom: 1rem; }
+    .description ul { padding-left: 1.2rem; }
+    .description li { margin-bottom: 0.5rem; }
+    .links { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .links a { color: #fe2c55; text-decoration: none; font-size: 0.95rem; padding: 0.5rem 1.2rem; border: 1px solid #fe2c55; border-radius: 6px; transition: all 0.2s; }
+    .links a:hover { background: #fe2c55; color: #fff; }
+    .footer { margin-top: 3rem; color: #555; font-size: 0.8rem; }
+    .callback-note { background: #111; border: 1px solid #2a2a2a; border-radius: 8px; padding: 1rem 1.5rem; margin-bottom: 2rem; font-size: 0.9rem; color: #777; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="logo">DNC<span>Publisher</span></div>
+    <p class="tagline">Content publishing automation for creators</p>
 
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="D'Leads | Site institucional" />
-    <meta
-      property="og:description"
-      content="Informações institucionais, About Us, Privacy Policy, CNPJ, endereço físico e contato oficial da D'Leads."
-    />
+    <div class="description">
+      <h2>About this application</h2>
+      <p>DNC Publisher is a personal content publishing tool built for the creator <strong>@dois_no_corre</strong>. It automates the process of uploading short-form video content to the creator's own account.</p>
+      <br>
+      <p>The application:</p>
+      <ul>
+        <li>Authenticates the creator's account via OAuth 2.0</li>
+        <li>Uploads pre-edited video files directly to the creator's account</li>
+        <li>Publishes or schedules videos as drafts for manual review</li>
+        <li>Does not collect, store, or share any user data with third parties</li>
+      </ul>
+      <br>
+      <p>This is a private, single-user tool — not a public application or service.</p>
+    </div>
 
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="alternate icon" href="/favicon.jpeg" />
-    <title>D'Leads | Site institucional</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+    <div class="callback-note">
+      This site also serves as the OAuth callback endpoint for the application's authorization flow.
+    </div>
+
+    <div class="links">
+      <a href="/dual-leads-site/terms.html">Terms of Service</a>
+      <a href="/dual-leads-site/privacy.html">Privacy Policy</a>
+    </div>
+
+    <div class="footer">
+      <p>DNC Publisher &copy; 2026 — Vinicius Valim. All rights reserved.</p>
+      <p style="margin-top:0.4rem;">Contact: vini.valim25@gmail.com</p>
+    </div>
+  </div>
+</body>
 </html>
